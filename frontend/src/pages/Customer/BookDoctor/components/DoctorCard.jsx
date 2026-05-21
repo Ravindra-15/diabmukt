@@ -94,7 +94,7 @@ const bioSnippet =
               }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-orange-400">
+            <div className="w-full h-full flex items-center justify-center text-[#6366F1]">
               <User size={28} />
             </div>
           )}
@@ -104,7 +104,7 @@ const bioSnippet =
   <h3 className="text-sm font-bold text-gray-900">
     {doctor.fullName}
   </h3>
-  <CheckCircle2 size={14} className="text-orange-500" aria-label="Verified" />
+  <CheckCircle2 size={14} className="text-[#4F46E5]" aria-label="Verified" />
 </div>
 
 {doctor.isFeatured && (
@@ -178,7 +178,7 @@ const bioSnippet =
             inline-flex items-center justify-center
             px-5 py-2.5 rounded-full
             text-sm font-semibold text-white
-            bg-orange-500 hover:bg-orange-600
+            bg-shadow-[#4F46E5]hover:bg-[#4338CA]
             transition-colors
             shadow-[0_4px_14px_rgba(249,115,22,0.25)]
             w-full sm:w-auto

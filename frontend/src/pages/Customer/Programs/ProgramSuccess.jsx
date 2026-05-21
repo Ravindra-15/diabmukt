@@ -45,7 +45,7 @@ export default function ProgramSuccess() {
 
           <p className="text-gray-500 text-sm sm:text-base mb-10">
             Welcome to{" "}
-            <span className="text-orange-500 font-semibold">{programName}</span>
+            <span className="text-[#4F46E5] font-semibold">{programName}</span>
             {tenure && (
               <>
                 {" "}
@@ -57,7 +57,7 @@ export default function ProgramSuccess() {
 
           <button
             onClick={() => navigate(`/programs/${id}/dashboard`)}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3.5 rounded-full transition-colors shadow-[0_4px_14px_rgba(249,115,22,0.35)]"
+            className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white font-semibold py-3.5 rounded-full transition-colors shadow-[0_6px_18px_rgba(79,70,229,0.28)]"
           >
             Go To Dashboard
           </button>

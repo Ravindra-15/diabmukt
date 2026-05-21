@@ -106,7 +106,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
         <div className="max-w-md mx-auto md:mx-0 text-center md:text-left px-2">
           <h1 className="text-[38px] md:text-[52px] font-semibold text-teal-900 leading-[1.15]">
             Your Wellness <br />
-            <span className="text-orange-500">Journey Begins</span>
+            <span className="text-[#4F46E5]">Journey Begins</span>
           </h1>
 
           <p className="mt-4 text-gray-600 text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
@@ -129,7 +129,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-orange-400"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
             />
 
             {/* Password */}
@@ -140,7 +140,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-orange-400"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
               />
               <button
                 type="button"
@@ -162,7 +162,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-orange-400"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
               />
             </div>
 
@@ -170,7 +170,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
             <button
               onClick={handleSignup}
               disabled={loading}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full text-[14px] font-medium transition"
+              className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white py-3 rounded-full text-[14px] font-medium transition"
             >
               {loading ? "Creating..." : "Create Account"}
             </button>
@@ -197,7 +197,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="text-orange-500 font-medium hover:underline"
+                className="text-[#4F46E5] font-medium hover:underline"
               >
                 Log in
               </Link>

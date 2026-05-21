@@ -26,7 +26,7 @@ const ChipPicker = ({ label, value, options, onChange }) => (
               transition-colors
               ${
                 isActive
-                  ? "bg-orange-500 text-white border-orange-500 shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
+                  ? "bg-[#4F46E5] text-white border-[#4F46E5] shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
                   : "bg-white text-gray-700 border-gray-200 hover:border-orange-300"
               }
             `}

@@ -37,7 +37,7 @@ const OnBreakOverlay = ({ onBreak, onDismiss, onEndBreak }) => {
         {/* Illustration placeholder — Coffee icon for now */}
         <div className="flex justify-center mb-5">
           <div className="w-24 h-24 rounded-full bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center">
-            <Coffee size={36} className="text-orange-500" />
+            <Coffee size={36} className="text-[#4F46E5]" />
           </div>
         </div>
 

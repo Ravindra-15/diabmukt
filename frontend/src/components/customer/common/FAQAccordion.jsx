@@ -52,7 +52,7 @@ const FAQItem = ({ question, answer, isOpen, onToggle }) => {
         transition-colors
       "
       >
-        <span className="text-sm sm:text-base font-semibold text-[#0F2C3D] flex-1">
+        <span className="text-sm sm:text-base font-semibold text-[#083B44] flex-1">
           {question}
         </span>
 
@@ -65,8 +65,8 @@ const FAQItem = ({ question, answer, isOpen, onToggle }) => {
             transition-colors
             ${
               isOpen
-                ? "bg-gray-100 text-[#0F2C3D]"
-                : "bg-gray-50 text-[#0F2C3D]"
+                ? "bg-gray-100 text-[#083B44]"
+                : "bg-gray-50 text-[#083B44]"
             }
           `}
         >

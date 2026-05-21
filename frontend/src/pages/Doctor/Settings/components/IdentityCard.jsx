@@ -411,7 +411,7 @@ const IdentityCard = () => {
             <span
               className={`text-xs ${
                 countVisibleChars(form.shortBio) > LIMITS.BIO_MAX * 0.9
-                  ? "text-orange-500"
+                  ? "text-[#4F46E5]"
                   : "text-gray-400"
               }`}
             >

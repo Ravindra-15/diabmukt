@@ -19,7 +19,7 @@ import {
 // 🎨 Section icon styles
 // ============================================
 const SECTION_STYLES = {
-  metabolic: { icon: Activity, color: "text-orange-500", bg: "bg-orange-50" },
+  metabolic: { icon: Activity, color: "text-[#4F46E5]", bg: "bg-[#F3F1FF]" },
   physical: { icon: Ruler, color: "text-blue-500", bg: "bg-blue-50" },
   lifestyle: { icon: Leaf, color: "text-emerald-500", bg: "bg-emerald-50" },
   symptoms: { icon: Heart, color: "text-amber-500", bg: "bg-amber-50" },

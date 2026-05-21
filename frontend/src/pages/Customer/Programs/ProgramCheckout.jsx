@@ -80,10 +80,10 @@ export default function ProgramCheckout() {
       <div className="bg-white rounded-[32px] shadow-2xl w-full max-w-3xl overflow-hidden border border-gray-100">
 
         {/* HEADER */}
-        <div className="bg-gradient-to-r from-orange-500 to-orange-400 px-8 py-6 relative">
+        <div className="bg-gradient-to-r from-[#4F46E5] to-[#6366F1]px-8 py-6 relative">
           <button
             onClick={() => navigate(-1)}
-            className="absolute top-4 right-4 bg-white text-orange-500 rounded-full p-1.5 transition-all hover:bg-orange-50"
+            className="absolute top-4 right-4 bg-white text-[#4F46E5] rounded-full p-1.5 transition-all hover:bg-[#F3F1FF]"
           >
             <X size={16} />
           </button>
@@ -104,7 +104,7 @@ export default function ProgramCheckout() {
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 leading-snug">
                   Your{" "}
-                  <span className="text-orange-500">{tenure}</span>{" "}
+                  <span className="text-[#4F46E5]">{tenure}</span>{" "}
                   Wellness Plan
                 </h3>
                 <p className="text-gray-500 mt-2 text-sm leading-relaxed">
@@ -112,8 +112,8 @@ export default function ProgramCheckout() {
                   expert-led sessions and progress tracking.
                 </p>
               </div>
-              <div className="bg-orange-50 border border-orange-100 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 shrink-0">
-                <Calendar size={18} className="text-orange-500" />
+              <div className="bg-[#F3F1FF] border border-orange-100 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 shrink-0">
+                <Calendar size={18} className="text-[#4F46E5]" />
                 <span className="text-xs font-semibold text-gray-700 text-center leading-tight">
                   {tenure}
                 </span>
@@ -135,7 +135,7 @@ export default function ProgramCheckout() {
                 </div>
                 <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
                   <span className="font-bold text-gray-800">Total</span>
-                  <span className="text-3xl font-bold text-orange-500">${price}</span>
+                  <span className="text-3xl font-bold text-[#4F46E5]">${price}</span>
                 </div>
               </div>
             </div>
@@ -150,9 +150,9 @@ export default function ProgramCheckout() {
                   value={form.referralCode}
                   onChange={handle}
                   placeholder="Enter referral code"
-                  className="flex-1 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-orange-500 transition-colors"
+                  className="flex-1 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
-                <button className="px-5 rounded-2xl border border-orange-300 text-orange-500 font-semibold hover:bg-orange-50 transition-colors text-sm">
+                <button className="px-5 rounded-2xl border border-orange-300 text-[#4F46E5] font-semibold hover:bg-[#F3F1FF] transition-colors text-sm">
                   Apply
                 </button>
               </div>
@@ -177,7 +177,7 @@ export default function ProgramCheckout() {
                     setForm({ ...form, cardNumber: formatCard(e.target.value) })
                   }
                   placeholder="1234 5678 9012 3456"
-                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-orange-500 transition-colors"
+                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
               </div>
 
@@ -193,7 +193,7 @@ export default function ProgramCheckout() {
                       setForm({ ...form, expiry: formatExpiry(e.target.value) })
                     }
                     placeholder="MM/YY"
-                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-orange-500 transition-colors"
+                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
                 <div>
@@ -210,7 +210,7 @@ export default function ProgramCheckout() {
                       })
                     }
                     placeholder="123"
-                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-orange-500 transition-colors"
+                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
               </div>
@@ -224,14 +224,14 @@ export default function ProgramCheckout() {
                   value={form.cardHolder}
                   onChange={handle}
                   placeholder="Rahul Sharma"
-                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-orange-500 transition-colors"
+                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
               </div>
 
               <button
                 onClick={submit}
                 disabled={loading}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-full transition-all shadow-[0_8px_24px_rgba(249,115,22,0.35)] disabled:opacity-60 mt-2"
+                className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white font-bold py-4 rounded-full transition-all shadow-[0_8px_24px_rgba(249,115,22,0.35)] disabled:opacity-60 mt-2"
               >
                 {loading ? "Processing..." : `Pay $${price}`}
               </button>

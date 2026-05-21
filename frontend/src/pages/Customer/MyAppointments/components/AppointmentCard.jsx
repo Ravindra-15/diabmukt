@@ -161,7 +161,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-orange-400">
+            <div className="w-full h-full flex items-center justify-center text-[#6366F1]">
               <User size={22} />
             </div>
           )}
@@ -173,7 +173,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               {doctor?.fullName || doctorName}
             </p>
 
-            <CheckCircle2 size={13} className="text-orange-500 flex-shrink-0" />
+            <CheckCircle2 size={13} className="text-[#4F46E5] flex-shrink-0" />
           </div>
 
           {doctor?.domain && (
@@ -222,7 +222,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               inline-flex items-center gap-1.5
               px-4 py-2 rounded-full
               text-xs font-semibold text-white
-              bg-orange-500 hover:bg-orange-600
+              bg-[#4F46E5] hover:bg- [#4338CA]
               transition-colors
               shadow-[0_4px_10px_rgba(249,115,22,0.25)]
             "

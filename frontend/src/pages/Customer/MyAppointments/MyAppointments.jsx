@@ -70,7 +70,7 @@ const MyAppointments = () => {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text- [#4338CA] transition-colors"
           >
             <ArrowLeft size={16} />
             Back
@@ -93,7 +93,7 @@ const MyAppointments = () => {
             <div
               className="
                 relative overflow-hidden
-                bg-gradient-to-br from-orange-500 to-orange-600
+                bg-gradient-to-br from-[#4F46E5] to- [#4338CA]
                 rounded-2xl p-5 sm:p-6
                 text-center
                 shadow-[0_8px_24px_rgba(249,115,22,0.18)]
@@ -109,7 +109,7 @@ const MyAppointments = () => {
                 className="
                   mt-4 inline-flex items-center gap-1.5
                   px-5 py-2 rounded-full
-                  text-sm font-semibold text-orange-600
+                  text-sm font-semibold text- [#4338CA]
                   bg-white hover:bg-gray-50
                   transition-colors
                   shadow-[0_4px_14px_rgba(0,0,0,0.1)]

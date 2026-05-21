@@ -46,7 +46,7 @@ const DoctorDetailHeader = ({ doctor }) => {
               }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-orange-400">
+            <div className="w-full h-full flex items-center justify-center text-[#6366F1]">
               <User size={28} />
             </div>
           )}
@@ -54,7 +54,7 @@ const DoctorDetailHeader = ({ doctor }) => {
 
         <div className="flex items-center gap-1 mt-3">
           <h2 className="text-sm font-bold text-gray-900">{doctor.fullName}</h2>
-          <CheckCircle2 size={14} className="text-orange-500" />
+          <CheckCircle2 size={14} className="text-[#4F46E5]" />
         </div>
         {doctor.domain && (
           <p className="text-xs text-gray-500 mt-0.5">{doctor.domain}</p>
@@ -83,7 +83,7 @@ const DoctorDetailHeader = ({ doctor }) => {
                   inline-flex items-center
                   px-2.5 py-1 rounded-full
                   text-[11px] font-semibold
-                  bg-orange-50 text-orange-700
+                  bg-[#F3F1FF] text-orange-700
                   border border-orange-100
                 "
               >

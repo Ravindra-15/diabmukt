@@ -79,7 +79,7 @@ export default function MyProfile() {
       <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-500 hover:text-orange-500 text-sm mb-6 transition-colors"
+          className="flex items-center gap-2 text-gray-500 hover:text-[#4F46E5] text-sm mb-6 transition-colors"
         >
           <ArrowLeft size={18} />
           Back
@@ -103,11 +103,11 @@ export default function MyProfile() {
                   {user?.fullName?.[0]?.toUpperCase() || "U"}
                 </span>
               )}
-              <span className="absolute bottom-0 right-0 w-7 h-7 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white">
+              <span className="absolute bottom-0 right-0 w-7 h-7 bg-[#4F46E5] rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-white">
                 +
               </span>
             </div>
-            <button className="mt-3 text-sm text-gray-500 hover:text-orange-500 transition-colors">
+            <button className="mt-3 text-sm text-gray-500 hover:text-[#4F46E5] transition-colors">
               Add Profile Photo
             </button>
           </div>
@@ -116,7 +116,7 @@ export default function MyProfile() {
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
               <div className="flex-1 min-w-0">
                 <h2 className="text-lg font-bold text-gray-800">{user?.fullName || "—"}</h2>
-                <p className="text-orange-500 text-sm font-medium mt-0.5">
+                <p className="text-[#4F46E5] text-sm font-medium mt-0.5">
                   {user?.nickName || "—"}
                 </p>
 
@@ -143,13 +143,13 @@ export default function MyProfile() {
               <div className="flex flex-col gap-2 shrink-0">
                 <button
                   onClick={() => setEditOpen(true)}
-                  className="border border-gray-200 hover:border-orange-400 hover:text-orange-500 text-gray-700 text-sm font-semibold px-6 py-2.5 rounded-full transition-colors"
+                  className="border border-gray-200 hover:border-[#6366F1]hover:text-[#4F46E5] text-gray-700 text-sm font-semibold px-6 py-2.5 rounded-full transition-colors"
                 >
                   Edit Profile
                 </button>
                 <button
                   onClick={() => navigate("/my-plans-and-billings")}
-                  className="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.35)] transition-colors"
+                  className="bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_6px_18px_rgba(79,70,229,0.28)] transition-colors"
                 >
                   My Plans and Billings
                 </button>
@@ -157,8 +157,8 @@ export default function MyProfile() {
             </div>
           </div>
 
-          <div className="bg-orange-50 border border-orange-100 rounded-xl p-4 flex items-start gap-3">
-            <Shield size={18} className="text-orange-500 shrink-0 mt-0.5" />
+          <div className="bg-[#F3F1FF] border border-orange-100 rounded-xl p-4 flex items-start gap-3">
+            <Shield size={18} className="text-[#4F46E5] shrink-0 mt-0.5" />
             <div>
               <p className="font-semibold text-gray-800 text-sm">Privacy Protection</p>
               <p className="text-gray-600 text-xs mt-0.5">
@@ -185,7 +185,7 @@ export default function MyProfile() {
         {/* SETTINGS */}
         <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(16,24,40,0.04)] p-6 sm:p-8">
           <div className="flex items-center gap-2 mb-1">
-            <Shield size={16} className="text-orange-500" />
+            <Shield size={16} className="text-[#4F46E5]" />
             <h3 className="text-base font-bold text-gray-800">Settings</h3>
           </div>
           <p className="text-gray-500 text-xs mb-6">

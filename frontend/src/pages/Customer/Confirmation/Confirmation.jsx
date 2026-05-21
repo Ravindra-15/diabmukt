@@ -99,7 +99,7 @@ const Confirmation = () => {
                         relative
                     "
                 >
-                  <PartyPopper size={32} className="text-orange-500" />
+                  <PartyPopper size={32} className="text-[#4F46E5]" />
 
                   <CheckCircle2
                     size={20}
@@ -134,7 +134,7 @@ const Confirmation = () => {
               <button
                 type="button"
                 onClick={() => navigate("/my-appointments")}
-                className="mt-3 text-xs font-semibold text-orange-600 hover:underline"
+                className="mt-3 text-xs font-semibold text- [#4338CA] hover:underline"
               >
                 View my appointments
               </button>
@@ -156,7 +156,7 @@ const Confirmation = () => {
                   className="
                     inline-flex items-center gap-1.5
                     px-5 py-2 rounded-full
-                    text-sm font-semibold text-orange-600
+                    text-sm font-semibold text- [#4338CA]
                     hover:underline
                     transition-colors
                   "

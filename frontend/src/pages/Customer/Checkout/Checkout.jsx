@@ -154,7 +154,7 @@ const Checkout = () => {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text- [#4338CA] transition-colors"
           >
             <ArrowLeft size={16} />
             Back
@@ -182,7 +182,7 @@ const Checkout = () => {
               <button
                 type="button"
                 onClick={() => navigate("/book-doctor")}
-                className="mt-3 text-xs font-semibold text-orange-600 hover:underline"
+                className="mt-3 text-xs font-semibold text- [#4338CA] hover:underline"
               >
                 Browse doctors
               </button>
@@ -223,7 +223,7 @@ const Checkout = () => {
                   w-full inline-flex items-center justify-center gap-2
                   px-8 py-3.5 rounded-full
                   text-sm font-semibold text-white
-                  bg-orange-500 hover:bg-orange-600
+                  bg-[#4F46E5] hover:bg- [#4338CA]
                   transition-colors
                   shadow-[0_4px_14px_rgba(249,115,22,0.3)]
                   disabled:opacity-50 disabled:cursor-not-allowed

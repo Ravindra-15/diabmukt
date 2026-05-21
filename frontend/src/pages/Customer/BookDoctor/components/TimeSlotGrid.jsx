@@ -6,7 +6,7 @@
 
 import React from "react";
 import { CalendarOff } from "lucide-react";
-import { formatTime12h } from "../../../../services/doctorAvailabilityService";
+import { formatSlot24h } from "../../../../services/doctorAvailabilityService";
 
 // ============================================
 // 📋 COMPONENT
@@ -63,7 +63,9 @@ const TimeSlotGrid = ({
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-      {slots.map((slot) => {
+      {slots
+  .filter((slot) => slot.isBookable)
+  .map((slot) => {
         const isSelected = selectedTime === slot.time;
         const disabled = !slot.isBookable;
 
@@ -79,15 +81,15 @@ const TimeSlotGrid = ({
               transition-colors border
               ${
                 isSelected
-                  ? "bg-orange-500 text-white border-orange-500 shadow-[0_4px_10px_rgba(249,115,22,0.3)]"
+                  ? "bg-shadow-[#4F46E5]text-white border-shadow-[#4F46E5]shadow-[0_4px_10px_rgba(249,115,22,0.3)]"
                   : disabled
                   ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
-                  : "bg-white text-gray-800 border-gray-200 hover:border-orange-300 hover:bg-orange-50"
+                  : "bg-white text-gray-800 border-gray-200 hover:border-orange-300 hover:bg-[#F3F1FF]"
               }
             `}
             aria-pressed={isSelected}
           >
-            {formatTime12h(slot.time)}
+            {formatSlot24h(slot.time)}
           </button>
         );
       })}

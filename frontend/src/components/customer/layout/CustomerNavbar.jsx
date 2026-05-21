@@ -31,26 +31,27 @@ const CustomerNavbar = () => {
 
   const auth = useContext(AuthContext) || {};
 
-const isLoggedIn = !!auth?.token;
+  const isLoggedIn = !!auth?.token;
 
-// Safe parse with try-catch (prevents crash on bad/null storage values)
-const getStoredUser = () => {
-  try {
-    const raw = localStorage.getItem("user") || sessionStorage.getItem("user");
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-};
+  // Safe parse with try-catch (prevents crash on bad/null storage values)
+  const getStoredUser = () => {
+    try {
+      const raw =
+        localStorage.getItem("user") || sessionStorage.getItem("user");
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  };
 
-const storedUser = useMemo(() => getStoredUser(), [auth?.token]);
+  const storedUser = useMemo(() => getStoredUser(), [auth?.token]);
 
-const profileCompleted = !!(
-  storedUser?.fullName &&
-  storedUser?.dob &&
-  storedUser?.country &&
-  storedUser?.city
-);
+  const profileCompleted = !!(
+    storedUser?.fullName &&
+    storedUser?.dob &&
+    storedUser?.country &&
+    storedUser?.city
+  );
   // ============================================
   // 🚫 HIDE AUTH UI ON AUTH PAGES
   // ============================================
@@ -115,10 +116,10 @@ const profileCompleted = !!(
             {/* 🏷️ BRAND */}
             <Link
               to="/home"
-              className="text-xl font-bold text-teal-700 tracking-tight flex-shrink-0"
+              className="text-xl font-bold text-[#083B44] tracking-tight flex-shrink-0"
               onClick={closeMobile}
             >
-              Yoga T20
+              Diabmukt
             </Link>
 
             {/* 🖥️ DESKTOP LINKS */}
@@ -130,12 +131,12 @@ const profileCompleted = !!(
                     href={link.to}
                     className="
                       relative text-sm font-medium tracking-wide
-                      text-gray-600 hover:text-teal-700
+                      text-gray-600 hover:text-[#4F46E5]
                       transition-all duration-300
                       hover:-translate-y-[1px]
                       after:absolute after:left-0 after:-bottom-1
                       after:h-[2px] after:w-0
-                      after:bg-orange-500
+                      after:bg-[#4F46E5]
                       after:rounded-full
                       after:transition-all after:duration-300
                       hover:after:w-full
@@ -152,12 +153,12 @@ const profileCompleted = !!(
                       transition-all duration-300 hover:-translate-y-[1px]
                       after:absolute after:left-0 after:-bottom-1
                       after:h-[2px] after:w-0
-                      after:bg-orange-500 after:rounded-full
+                      after:bg-[#4F46E5] after:rounded-full
                       after:transition-all after:duration-300
                       hover:after:w-full ${
                         isActive
-                          ? "text-teal-700"
-                          : "text-gray-600 hover:text-gray-900"
+                          ? "text-[#083B44] hover:text-[#4F46E5]"
+                          : "text-gray-600 hover:text-[#4F46E5]"
                       }`
                     }
                   >
@@ -177,7 +178,7 @@ const profileCompleted = !!(
                     className={({ isActive }) =>
                       `hidden sm:inline-flex w-10 h-10 rounded-full items-center justify-center transition-colors ${
                         isActive
-                          ? "bg-teal-50 text-teal-700"
+                          ? "bg-teal-50 text-[#083B44]"
                           : "text-gray-600 hover:bg-gray-50"
                       }`
                     }
@@ -194,9 +195,9 @@ const profileCompleted = !!(
                       hidden sm:inline-flex items-center
                       px-5 py-2 rounded-full
                       text-sm font-semibold text-white
-                      bg-orange-500 hover:bg-orange-600
+                      bg-[#4F46E5] hover:bg-[#4338CA]
                       transition-colors
-                      shadow-[0_4px_14px_rgba(249,115,22,0.35)]
+                     shadow-[0_6px_18px_rgba(79,70,229,0.28)]
                     "
                   >
                     Profile
@@ -210,9 +211,9 @@ const profileCompleted = !!(
                     hidden sm:inline-flex items-center
                     px-5 py-2 rounded-full
                     text-sm font-semibold text-white
-                    bg-orange-500 hover:bg-orange-600
+                   bg-[#4F46E5] hover:bg-[#4338CA]
                     transition-colors
-                    shadow-[0_4px_14px_rgba(249,115,22,0.35)]
+                    shadow-[0_6px_18px_rgba(79,70,229,0.28)]
                   "
                 >
                   Join now
@@ -283,7 +284,7 @@ const profileCompleted = !!(
                     className="
                       mt-1 px-4 py-2 rounded-full self-start
                       text-xs font-semibold text-white
-                      bg-orange-500 hover:bg-orange-600
+                      bg-[#4F46E5] hover:bg- [#4338CA]
                       transition-colors
                     "
                   >
@@ -300,7 +301,7 @@ const profileCompleted = !!(
                   className="
                     mt-1 px-4 py-2 rounded-full self-start
                     text-xs font-semibold text-white
-                    bg-orange-500 hover:bg-orange-600
+                    bg-[#4F46E5] hover:bg- [#4338CA]
                     transition-colors
                   "
                 >

@@ -117,7 +117,7 @@ const DoctorDetail = () => {
           <button
             type="button"
             onClick={() => navigate("/book-doctor")}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-[#4338CA] transition-colors"
           >
             <ArrowLeft size={16} />
             Back to doctors
@@ -126,7 +126,7 @@ const DoctorDetail = () => {
           {/* 🏷️ Page title */}
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900 text-center tracking-tight">
             Book Doctor{" "}
-            <span className="text-orange-500">Consultations</span>
+            <span className="text-[#4F46E5]">Consultations</span>
           </h1>
 
           {/* ============================================ */}
@@ -194,7 +194,7 @@ const DoctorDetail = () => {
                       inline-flex items-center justify-center gap-2
                       px-8 py-3 rounded-full
                       text-sm font-semibold text-white
-                      bg-orange-500 hover:bg-orange-600
+                      bg-shadow-[#4F46E5]hover:bg-[#4338CA]
                       transition-colors
                       shadow-[0_4px_14px_rgba(249,115,22,0.3)]
                       disabled:opacity-50 disabled:cursor-not-allowed

@@ -54,7 +54,7 @@ const Navbar = () => {
                 className="group relative whitespace-nowrap text-gray-700 hover:text-teal-800 transition-all duration-300"
               >
                 {item.label}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#4F46E5] transition-all duration-300 group-hover:w-full" />
               </a>
             ) : (
               <Link
@@ -63,7 +63,7 @@ const Navbar = () => {
                 className="group relative whitespace-nowrap text-gray-700 hover:text-teal-800 transition-all duration-300"
               >
                 {item.label}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-orange-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#4F46E5] transition-all duration-300 group-hover:w-full" />
               </Link>
             ),
           )}
@@ -72,7 +72,7 @@ const Navbar = () => {
         {/* RIGHT */}
         <div className="flex items-center gap-3">
           <Link to="/login">
-  <button className="bg-orange-500 text-white px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-medium whitespace-nowrap">
+  <button className="bg-[#4F46E5] text-white px-4 md:px-5 py-2 rounded-full text-xs md:text-sm font-medium whitespace-nowrap">
     Join now
   </button>
 </Link>
@@ -114,7 +114,7 @@ const Navbar = () => {
         >
           {item.label}
 
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-orange-500 rounded-full transition-all duration-300 group-hover:w-full" />
+          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-[#4F46E5] rounded-full transition-all duration-300 group-hover:w-full" />
         </a>
       ) : (
         <Link
@@ -130,7 +130,7 @@ const Navbar = () => {
         >
           {item.label}
 
-          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-orange-500 rounded-full transition-all duration-300 group-hover:w-full" />
+          <span className="absolute left-0 -bottom-0.5 w-0 h-[2px] bg-[#4F46E5] rounded-full transition-all duration-300 group-hover:w-full" />
         </Link>
       ),
     )}
@@ -147,7 +147,7 @@ const Navbar = () => {
       </button>
     ) : (
       <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-      <button className="bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-medium inline-flex items-center justify-center">
+      <button className="bg-[#4F46E5] text-white px-5 py-2 rounded-full text-sm font-medium inline-flex items-center justify-center">
           Join now
         </button>
       </Link>

@@ -216,12 +216,12 @@ export default function ProgramDashboard() {
 
               {/* Left */}
               <div className="flex-1 min-w-0">
-                <p className="text-orange-500 font-semibold text-sm mb-1">
+                <p className="text-[#4F46E5] font-semibold text-sm mb-1">
                   {programTitle}
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 leading-tight">
                   Good Morning,{" "}
-                  <span className="text-orange-500">Anandadas</span>
+                  <span className="text-[#4F46E5]">Anandadas</span>
                 </h2>
                 <p className="text-gray-400 text-sm mt-1">
                   Let's track your wellness journey for today
@@ -245,7 +245,7 @@ export default function ProgramDashboard() {
                   />
                 </div>
 
-                <button className="mt-5 flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.35)] transition-colors">
+                <button className="mt-5 flex items-center gap-2 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_6px_18px_rgba(79,70,229,0.28)] transition-colors">
                   <Plus size={15} />
                   Add Progress
                 </button>
@@ -309,10 +309,10 @@ export default function ProgramDashboard() {
                       Day {String(videoData.dayIndex + 1).padStart(2, "0")}
                     </p>
                   )}
-                  <p className="text-orange-500 font-semibold text-sm">
+                  <p className="text-[#4F46E5] font-semibold text-sm">
                     {YOGA_TYPES[yogaType].label}
                     {videoData?.isScheduled && (
-                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-orange-50 text-orange-700 text-[10px] font-bold">
+                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-[#F3F1FF] text-orange-700 text-[10px] font-bold">
                         Today's Special
                       </span>
                     )}
@@ -329,7 +329,7 @@ export default function ProgramDashboard() {
                       href={video.videoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
                     >
                       <Play size={13} fill="white" />
                       Play Video
@@ -340,7 +340,7 @@ export default function ProgramDashboard() {
                       className={`inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border transition-colors disabled:cursor-not-allowed ${
                         completedToday
                           ? "bg-green-50 border-green-400 text-green-600"
-                          : "border-gray-200 text-gray-600 hover:border-orange-400 hover:text-orange-500"
+                          : "border-gray-200 text-gray-600 hover:border-[#6366F1]hover:text-[#4F46E5]"
                       }`}
                     >
                       <Check size={13} />
@@ -395,7 +395,7 @@ export default function ProgramDashboard() {
                       className={`mt-4 text-sm font-semibold px-12 py-2.5 rounded-full transition-colors shadow-[0_4px_14px_rgba(249,115,22,0.25)] ${
                         isActive
                           ? "bg-green-500 hover:bg-green-600 text-white"
-                          : "bg-orange-500 hover:bg-orange-600 text-white"
+                          : "bg-[#4F46E5] hover:bg- [#4338CA] text-white"
                       }`}
                     >
                       {isActive ? "✓ Active" : "Start"}
@@ -410,7 +410,7 @@ export default function ProgramDashboard() {
               <div className="text-center py-3 border-t border-gray-100">
                 <button
                   onClick={() => handleSwitchQueue("normal_yoga")}
-                  className="text-sm text-orange-500 hover:text-orange-600 font-medium hover:underline"
+                  className="text-sm text-[#4F46E5] hover:text- [#4338CA] font-medium hover:underline"
                 >
                   ← Back to Normal Yoga
                 </button>
@@ -423,8 +423,8 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 bg-orange-50 rounded-lg flex items-center justify-center">
-                <Calendar size={15} className="text-orange-500" />
+              <div className="w-7 h-7 bg-[#F3F1FF] rounded-lg flex items-center justify-center">
+                <Calendar size={15} className="text-[#4F46E5]" />
               </div>
               <span className="font-semibold text-gray-800 text-sm">
                 Next Doctor Consultation

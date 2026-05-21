@@ -28,7 +28,7 @@ const ChipPicker = ({ label, value, options, onChange }) => (
               transition-colors
               ${
                 isActive
-                  ? "bg-orange-500 text-white border-orange-500 shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
+                  ? "bg-[#4F46E5] text-white border-[#4F46E5] shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
                   : "bg-white text-gray-700 border-gray-200 hover:border-orange-300"
               }
             `}
@@ -58,7 +58,7 @@ const Field = ({ label, value, onChange, placeholder }) => (
         w-full px-3 py-2.5
         bg-white border border-gray-200 rounded-xl
         text-sm text-gray-900 placeholder-gray-400
-        focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500
+        focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]
         transition-colors
       "
     />

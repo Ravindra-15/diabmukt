@@ -68,6 +68,8 @@ const BookDoctor = () => {
             onSpecialtyChange={setSpecialty}
           />
 
+          {/* 📋 How to book */}
+          <HowToBook />
           {/* 🩺 Doctor list */}
           <DoctorList
             doctors={doctors}
@@ -77,9 +79,6 @@ const BookDoctor = () => {
             onNext={nextPage}
             onClearFilters={clearFilters}
           />
-
-          {/* 📋 How to book */}
-          <HowToBook />
 
           {/* ❓ FAQ */}
           <FAQSection />

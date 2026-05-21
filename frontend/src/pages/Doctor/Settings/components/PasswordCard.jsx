@@ -25,7 +25,7 @@ const getPasswordChecks = (pw) => ({
 const getStrengthLevel = (checks) => {
   const score = Object.values(checks).filter(Boolean).length;
   if (score <= 1) return { level: 1, label: "Weak", color: "bg-red-400" };
-  if (score === 2) return { level: 2, label: "Fair", color: "bg-orange-400" };
+  if (score === 2) return { level: 2, label: "Fair", color: "bg-[#4F46E5]" };
   if (score === 3) return { level: 3, label: "Good", color: "bg-yellow-400" };
   return { level: 4, label: "Strong", color: "bg-green-500" };
 };

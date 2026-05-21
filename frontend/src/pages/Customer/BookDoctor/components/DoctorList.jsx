@@ -55,7 +55,7 @@ const EmptyState = ({ onClearFilters }) => (
       <button
         type="button"
         onClick={onClearFilters}
-        className="text-xs font-semibold text-orange-600 hover:underline"
+        className="text-xs font-semibold text-[#4338CA] hover:underline"
       >
         Clear filters
       </button>
@@ -81,7 +81,7 @@ const DoctorList = ({
         <div>
           <h2 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
             Top Doctors !{" "}
-            <span className="text-orange-500">Zero Stress</span>
+            <span className="text-[#4F46E5]">Zero Stress</span>
           </h2>
           <p className="text-xs text-gray-500 mt-0.5">
             Find the right expert for your journey
@@ -96,7 +96,7 @@ const DoctorList = ({
           className="
             w-9 h-9 rounded-lg
             flex items-center justify-center
-            text-orange-500 bg-orange-50 border border-orange-100
+            text-shadow-[#4F46E5]bg-[#F3F1FF] border border-orange-100
             cursor-default
           "
           title="View options coming soon"

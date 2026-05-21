@@ -120,7 +120,7 @@ export default function ReferAndEarnPage() {
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-orange-400 hover:bg-orange-500 text-white text-sm font-semibold rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-colors whitespace-nowrap"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#4F46E5] hover:bg-[#4F46E5] text-white text-sm font-semibold rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-colors whitespace-nowrap"
                 >
                   {copied ? (
                     <>
@@ -144,7 +144,7 @@ export default function ReferAndEarnPage() {
 
               <button
                 onClick={handleWhatsAppShare}
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-orange-400 hover:bg-orange-500 text-white text-sm sm:text-xl font-semibold rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 sm:px-6 sm:py-4 bg-[#4F46E5] hover:bg-[#4F46E5] text-white text-sm sm:text-xl font-semibold rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.3)] transition-colors"
               >
                 <Share2 className="w-4 h-4 sm:w-8 sm:h-8" />
                 Share directly to WhatsApp
@@ -208,7 +208,7 @@ const StepCircle = ({ icon: Icon, title, subtitle }) => (
 const ProgressCard = ({ icon: Icon, label, value, highlight, footer }) => {
   if (highlight) {
     return (
-      <div className="bg-gradient-to-br from-orange-400 to-orange-500 rounded-2xl p-8 sm:p-10 text-white shadow-[0_8px_30px_rgba(249,115,22,0.25)] flex flex-col items-center justify-center min-h-[300px]">
+      <div className="bg-gradient-to-br from-[#6366F1]to-[#4F46E5] rounded-2xl p-8 sm:p-10 text-white shadow-[0_8px_30px_rgba(249,115,22,0.25)] flex flex-col items-center justify-center min-h-[300px]">
         <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mb-4">
           <Icon size={22} className="text-white" />
         </div>
@@ -221,8 +221,8 @@ const ProgressCard = ({ icon: Icon, label, value, highlight, footer }) => {
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_20px_rgba(16,24,40,0.06)] p-8 sm:p-10 flex flex-col items-center justify-center min-h-[240px]">
-      <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center mb-4">
-        <Icon size={22} className="text-orange-400" />
+      <div className="w-14 h-14 rounded-full bg-[#F3F1FF] flex items-center justify-center mb-4">
+        <Icon size={22} className="text-[#6366F1]" />
       </div>
       <p className="text-base font-medium text-gray-600 text-center">{label}</p>
       <p className="text-5xl font-bold text-gray-900 text-center mt-3">{value}</p>

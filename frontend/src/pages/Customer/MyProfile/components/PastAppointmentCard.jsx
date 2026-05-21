@@ -34,7 +34,7 @@ export default function PastAppointmentCard({ appointment }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
           <p className="font-semibold text-gray-800 text-sm truncate">{doctorName}</p>
-          <CheckCircle2 size={14} className="text-orange-500 shrink-0" />
+          <CheckCircle2 size={14} className="text-[#4F46E5] shrink-0" />
         </div>
         {specialization && (
           <p className="text-xs text-gray-500 mt-0.5">{specialization}</p>

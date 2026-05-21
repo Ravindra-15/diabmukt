@@ -24,9 +24,9 @@ export default function ReferAndEarnSection() {
         <div className="relative overflow-hidden bg-gray-50 rounded-3xl border border-gray-100 px-6 sm:px-12 py-10 sm:py-14 mb-10">
           {/* Top-right decorative image */}
           <img
-            src="/images/referandearn.png"
+            src="/images/referandearndiab.png"
             alt=""
-            className="absolute -top-6 -right-6 sm:-top-24 sm:-right-24 lg:-top-28 lg:-right-28 w-20 sm:w-64 lg:w-80 pointer-events-none select-none"
+            className="absolute -top-6 -right-12 sm:-top-24 sm:-right-24 lg:-top-28 lg:-right-40 w-36 sm:w-96 lg:w-[28rem] pointer-events-none select-none"
           />
 
           <div className="relative z-10 text-center max-w-3xl mx-auto">

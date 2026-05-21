@@ -70,7 +70,7 @@ export default function Notifications() {
       <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-500 hover:text-orange-500 text-sm mb-6 transition-colors"
+          className="flex items-center gap-2 text-gray-500 hover:text-[#4F46E5] text-sm mb-6 transition-colors"
         >
           <ArrowLeft size={18} />
           Back
@@ -86,7 +86,7 @@ export default function Notifications() {
             <h3 className="text-base font-bold text-gray-800">
               Recent Notifications
               {unreadCount > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center bg-orange-500 text-white text-xs font-semibold rounded-full px-2 py-0.5">
+                <span className="ml-2 inline-flex items-center justify-center bg-[#4F46E5] text-white text-xs font-semibold rounded-full px-2 py-0.5">
                   {unreadCount}
                 </span>
               )}
@@ -94,7 +94,7 @@ export default function Notifications() {
             {unreadCount > 0 && (
               <button
                 onClick={handleMarkAll}
-                className="flex items-center gap-1.5 text-xs font-medium text-orange-500 hover:text-orange-600 transition-colors"
+                className="flex items-center gap-1.5 text-xs font-medium text-[#4F46E5] hover:text- [#4338CA] transition-colors"
               >
                 <CheckCheck size={14} />
                 Mark all as read

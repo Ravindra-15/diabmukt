@@ -105,7 +105,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
               value={form.fullName}
               onChange={handleChange}
               required
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
               placeholder="Your full name"
             />
           </div>
@@ -119,7 +119,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
               value={form.nickName}
               onChange={handleChange}
               required
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
               placeholder="Display name"
             />
           </div>
@@ -135,7 +135,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
               onChange={handleChange}
               required
               max={new Date().toISOString().split("T")[0]}
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
             />
           </div>
 
@@ -149,7 +149,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
                 value={form.country}
                 onChange={handleChange}
                 required
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
                 placeholder="India"
               />
             </div>
@@ -162,7 +162,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
                 value={form.city}
                 onChange={handleChange}
                 required
-                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+                className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
                 placeholder="Mumbai"
               />
             </div>
@@ -177,7 +177,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
               value={form.whatsapp}
               onChange={handleChange}
               required
-              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#4F46E5]"
               placeholder="+91 9876543210"
             />
           </div>
@@ -186,7 +186,7 @@ export default function EditProfileModal({ user, onClose, onUpdated }) {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.35)] transition-colors"
+              className="flex-1 bg-[#4F46E5] hover:bg- [#4338CA] disabled:opacity-60 text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_6px_18px_rgba(79,70,229,0.28)] transition-colors"
             >
               {saving ? "Saving..." : "Save Changes"}
             </button>

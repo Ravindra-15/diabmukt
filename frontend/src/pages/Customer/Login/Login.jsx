@@ -152,7 +152,7 @@ const Login = () => {
         <div className="max-w-md mx-auto md:mx-0 text-center md:text-left px-2">
           <h1 className="text-[38px] md:text-[52px] font-semibold text-teal-900 leading-[1.15]">
             Welcome <br />
-            <span className="text-orange-500">Back to Zealtho</span>
+            <span className="text-[#4F46E5]">Back to Zealtho</span>
           </h1>
 
           <p className="mt-4 text-gray-600 text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
@@ -174,7 +174,7 @@ const Login = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-orange-400"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
             />
 
             {/* PASSWORD */}
@@ -185,7 +185,7 @@ const Login = () => {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-orange-400"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
               />
 
               <button
@@ -204,12 +204,12 @@ const Login = () => {
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="accent-orange-500 w-4 h-4"
+                  className="accent-[#4F46E5] w-4 h-4"
                 />
                 Remember me
               </label>
 
-              <span className="text-orange-500 hover:underline cursor-pointer">
+              <span className="text-[#4F46E5] hover:underline cursor-pointer">
                 Forgot password?
               </span>
             </div>
@@ -218,7 +218,7 @@ const Login = () => {
             <button
               onClick={handleLogin}
               disabled={loading}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full text-[14px] font-medium transition"
+              className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white py-3 rounded-full text-[14px] font-medium transition"
             >
               {loading ? "Logging in..." : "Log In"}
             </button>
@@ -247,7 +247,7 @@ const Login = () => {
               Don't have an account?{" "}
               <Link
                 to="/signup"
-                className="text-orange-500 font-medium hover:underline"
+                className="text-[#4F46E5] font-medium hover:underline"
               >
                 Sign up
               </Link>

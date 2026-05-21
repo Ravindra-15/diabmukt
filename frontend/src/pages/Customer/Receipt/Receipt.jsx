@@ -58,7 +58,7 @@ export default function Receipt() {
           <p className="text-gray-700 font-semibold">Receipt not found</p>
           <button
             onClick={() => navigate(-1)}
-            className="mt-4 text-sm text-orange-500 hover:text-orange-600"
+            className="mt-4 text-sm text-[#4F46E5] hover:text- [#4338CA]"
           >
             Go back
           </button>
@@ -73,14 +73,14 @@ export default function Receipt() {
         <div className="flex items-center justify-between mb-6 print:hidden">
           <button
             onClick={() => navigate(-1)}
-            className="flex items-center gap-2 text-gray-500 hover:text-orange-500 text-sm transition-colors"
+            className="flex items-center gap-2 text-gray-500 hover:text-[#4F46E5] text-sm transition-colors"
           >
             <ArrowLeft size={18} />
             Back
           </button>
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-5 py-2 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.35)] transition-colors"
+            className="flex items-center gap-2 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-5 py-2 rounded-full shadow-[0_6px_18px_rgba(79,70,229,0.28)] transition-colors"
           >
             <Printer size={14} />
             Print / Save PDF

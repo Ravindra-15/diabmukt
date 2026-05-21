@@ -40,7 +40,7 @@ const StepIndicator = ({ currentStep }) => (
     {/* Connecting line */}
     <div className="absolute top-4 left-8 right-8 h-0.5 bg-gray-200 -z-0" aria-hidden="true">
       <div
-        className="h-full bg-orange-500 transition-all duration-300"
+        className="h-full bg-[#4F46E5] transition-all duration-300"
         style={{ width: `${((currentStep - 1) / (STEPS.length - 1)) * 100}%` }}
       />
     </div>
@@ -57,9 +57,9 @@ const StepIndicator = ({ currentStep }) => (
               transition-colors
               ${
                 isCompleted
-                  ? "bg-orange-500 text-white border-orange-500"
+                  ? "bg-[#4F46E5] text-white border-[#4F46E5]"
                   : isActive
-                  ? "bg-white text-orange-600 border-orange-500"
+                  ? "bg-white text- [#4338CA] border-[#4F46E5]"
                   : "bg-white text-gray-400 border-gray-200"
               }
             `}
@@ -69,7 +69,7 @@ const StepIndicator = ({ currentStep }) => (
           <p
             className={`
               mt-2 text-[10px] font-semibold tracking-wide uppercase text-center
-              ${isActive ? "text-orange-600" : "text-gray-400"}
+              ${isActive ? "text- [#4338CA]" : "text-gray-400"}
             `}
           >
             Step {step.id}
@@ -174,7 +174,7 @@ const BodyProfileWizard = () => {
           <button
             type="button"
             onClick={handleBack}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text- [#4338CA] transition-colors"
             disabled={saving}
           >
             <ArrowLeft size={16} />
@@ -266,7 +266,7 @@ const BodyProfileWizard = () => {
                     inline-flex items-center justify-center gap-1.5
                     px-6 py-2.5 rounded-full
                     text-sm font-semibold text-white
-                    bg-orange-500 hover:bg-orange-600
+                    bg-[#4F46E5] hover:bg- [#4338CA]
                     transition-colors
                     shadow-[0_4px_14px_rgba(249,115,22,0.3)]
                     disabled:opacity-50 disabled:cursor-not-allowed
@@ -293,7 +293,7 @@ const BodyProfileWizard = () => {
                     inline-flex items-center justify-center gap-1.5
                     px-6 py-2.5 rounded-full
                     text-sm font-semibold text-white
-                    bg-orange-500 hover:bg-orange-600
+                    bg-[#4F46E5] hover:bg- [#4338CA]
                     transition-colors
                     shadow-[0_4px_14px_rgba(249,115,22,0.3)]
                     disabled:opacity-50 disabled:cursor-not-allowed

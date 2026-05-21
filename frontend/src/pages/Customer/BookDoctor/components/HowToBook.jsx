@@ -39,7 +39,7 @@ const HowToBook = () => {
       <div className="text-center mb-10">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 tracking-tight">
           How to book{" "}
-          <span className="text-orange-500">Doctor Consultation !</span>
+          <span className="text-[#4F46E5]">Doctor Consultation !</span>
         </h2>
         <p className="text-sm text-gray-500 mt-1.5">
           Book a Doctor with Simple 3 Steps
@@ -67,7 +67,7 @@ const HowToBook = () => {
                 className="
                   relative z-10
                   w-[72px] h-[72px] rounded-full
-                  bg-gradient-to-br from-orange-500 to-orange-600
+                  bg-gradient-to-br from-shadow-[#4F46E5]to-[#4338CA]
                   flex items-center justify-center
                   shadow-[0_8px_18px_rgba(249,115,22,0.3)]
                   ring-4 ring-white

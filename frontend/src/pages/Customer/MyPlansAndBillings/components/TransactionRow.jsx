@@ -61,7 +61,7 @@ export default function TransactionRow({ tx, variant = "desktop" }) {
           {canDownload ? (
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
+              className="flex items-center gap-1.5 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
             >
               <Download size={12} />
               Download
@@ -93,7 +93,7 @@ export default function TransactionRow({ tx, variant = "desktop" }) {
         {canDownload ? (
           <button
             onClick={handleDownload}
-            className="flex items-center gap-1.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
+            className="flex items-center gap-1.5 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
           >
             <Download size={12} />
             Download

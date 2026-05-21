@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Heart, Activity, Bell, Users, Smile } from "lucide-react";
-import yogaT20PersonImg from "../../../../assets/yoga-t20-person.png";
+import yogaT20PersonImg from "../../../../assets/coupleontable.png";
 
 const benefits = [
   {
@@ -10,40 +10,40 @@ const benefits = [
     title: "Health Activity Tracking",
     description: "Build a clear, historical record of your wellness journey.",
     icon: Heart,
-    color: "text-red-500",
-    bg: "bg-red-50",
+    color: "text-[#4F46E5]",
+    bg: "bg-[#F3F1FF]",
   },
   {
     id: 2,
     title: "Exercise Tracking",
     description: "Watch your daily habits visually close their Targets!",
     icon: Activity,
-    color: "text-orange-500",
-    bg: "bg-orange-50",
+    color: "text-[#4F46E5]",
+    bg: "bg-[#F3F1FF]",
   },
   {
     id: 3,
     title: "Stand & Move Reminder",
     description: "Experience the motivating energy of group practices.",
     icon: Bell,
-    color: "text-orange-500",
-    bg: "bg-orange-50",
+    color: "text-[#4F46E5]",
+    bg: "bg-[#F3F1FF]",
   },
   {
     id: 4,
     title: "Community Sessions",
     description: "Experience the motivating energy of group practices.",
     icon: Users,
-    color: "text-orange-500",
-    bg: "bg-orange-50",
+    color: "text-[#4F46E5]",
+    bg: "bg-[#F3F1FF]",
   },
   {
     id: 5,
     title: "Laughing Therapy",
     description: "Release built-up stress and instantly boost your mood.",
     icon: Smile,
-    color: "text-orange-500",
-    bg: "bg-orange-50",
+    color: "text-[#4F46E5]",
+    bg: "bg-[#F3F1FF]",
   },
 ];
 
@@ -108,14 +108,14 @@ useEffect(() => {
 }, []);
 
   return (
-    <section className="py-10 sm:py-14 lg:py-16 bg-white">
+    <section className="py-8 sm:py-14 lg:py-10 bg-white">
       <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HEADING */}
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-teal-900 mb-2">
-            What will you <span className="text-orange-500">get</span> ?
-          </h2>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#111827] mb-2">
+  What will you <span className="text-[#4F46E5]">get ?</span>
+</h2>
           <p className="text-gray-500 text-xs sm:text-sm italic">
             "Lets List out the Benefits of the Yoga T20 Program"
           </p>

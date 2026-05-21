@@ -48,7 +48,7 @@ const ConsultationCard = ({
       <p className="text-sm font-bold text-gray-900 mb-4">Consultation Details</p>
 
       {/* 🩺 Doctor row — soft orange highlight */}
-      <div className="flex items-center gap-3 p-3 rounded-xl bg-orange-50/60 border border-orange-100">
+      <div className="flex items-center gap-3 p-3 rounded-xl bg-[#F3F1FF]/60 border border-orange-100">
         <div className="w-12 h-12 rounded-full overflow-hidden border border-white bg-gradient-to-br from-orange-100 to-pink-100 flex-shrink-0">
           {photoUrl ? (
             <img
@@ -60,7 +60,7 @@ const ConsultationCard = ({
               }}
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-orange-400">
+            <div className="w-full h-full flex items-center justify-center text-[#6366F1]">
               <User size={20} />
             </div>
           )}
@@ -70,7 +70,7 @@ const ConsultationCard = ({
             <p className="text-sm font-bold text-gray-900 truncate">
               {doctor?.fullName || "Doctor"}
             </p>
-            <CheckCircle2 size={13} className="text-orange-500 flex-shrink-0" />
+            <CheckCircle2 size={13} className="text-[#4F46E5] flex-shrink-0" />
           </div>
           {doctor?.domain && (
             <p className="text-xs text-gray-500 truncate">{doctor.domain}</p>
@@ -110,7 +110,7 @@ const ConsultationCard = ({
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-gray-700 font-semibold">Total</span>
-            <span className="font-bold text-orange-600 text-base">${fee}</span>
+            <span className="font-bold text- [#4338CA] text-base">${fee}</span>
           </div>
         </div>
       )}

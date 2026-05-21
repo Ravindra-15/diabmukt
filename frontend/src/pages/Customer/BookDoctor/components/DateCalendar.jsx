@@ -113,7 +113,7 @@ const DateCalendar = ({ selectedDate, onSelect }) => {
   return (
     <div
       className="
-        bg-orange-50/50 rounded-2xl border border-orange-100
+        bg-[#F3F1FF]/50 rounded-2xl border border-orange-100
         p-4 sm:p-5
       "
     >
@@ -126,7 +126,7 @@ const DateCalendar = ({ selectedDate, onSelect }) => {
           className="
             w-7 h-7 rounded-lg
             flex items-center justify-center
-            text-gray-600 hover:bg-white hover:text-orange-600
+            text-gray-600 hover:bg-white hover:text-[#4338CA]
             disabled:opacity-30 disabled:cursor-not-allowed
             transition-colors
           "
@@ -146,7 +146,7 @@ const DateCalendar = ({ selectedDate, onSelect }) => {
           className="
             w-7 h-7 rounded-lg
             flex items-center justify-center
-            text-gray-600 hover:bg-white hover:text-orange-600
+            text-gray-600 hover:bg-white hover:text-[#4338CA]
             disabled:opacity-30 disabled:cursor-not-allowed
             transition-colors
           "
@@ -189,9 +189,9 @@ const DateCalendar = ({ selectedDate, onSelect }) => {
                 transition-colors
                 ${
                   isSelected
-                    ? "bg-orange-500 text-white shadow-[0_4px_10px_rgba(249,115,22,0.35)]"
+                    ? "bg-shadow-[#4F46E5]text-white shadow-[0_4px_10px_rgba(249,115,22,0.35)]"
                     : isToday
-                    ? "bg-white text-orange-600 border border-orange-200"
+                    ? "bg-white text-[#4338CA] border border-orange-200"
                     : disabled
                     ? "text-gray-300 cursor-not-allowed"
                     : "text-gray-700 hover:bg-white"

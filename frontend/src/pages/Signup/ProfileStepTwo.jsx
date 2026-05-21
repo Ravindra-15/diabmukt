@@ -89,7 +89,7 @@ const ProfileStepTwo = () => {
           </h2>
 
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative">
-            <div className="text-orange-500 text-5xl font-serif absolute top-3 left-5 leading-none">
+            <div className="text-[#4F46E5] text-5xl font-serif absolute top-3 left-5 leading-none">
               ❝
             </div>
 

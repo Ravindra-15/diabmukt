@@ -198,7 +198,7 @@ const About = () => {
           <div
             className="
               relative overflow-hidden
-              bg-gradient-to-br from-orange-500 to-orange-600
+              bg-gradient-to-br from-[#4F46E5] to- [#4338CA]
               rounded-2xl sm:rounded-3xl
               p-6 sm:p-8 md:p-10 lg:p-14
               shadow-[0_8px_24px_rgba(249,115,22,0.18)]
@@ -255,7 +255,7 @@ const About = () => {
 
           {/* MOBILE TAGLINE (visible only on mobile, above images) */}
           <div className="lg:hidden mb-8 sm:mb-10 px-2">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0F2C3D] leading-snug text-center max-w-xl mx-auto">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#083B44] leading-snug text-center max-w-xl mx-auto">
               Lifestyle wellness programs designed by holistic doctors,
               integrating yoga, nutrition, and evidence-based natural approaches
             </h2>
@@ -315,7 +315,7 @@ const About = () => {
 
               {/* CENTER — tagline */}
               <div className="col-span-5 flex flex-col items-center text-center px-2">
-                <h2 className="text-[22px] xl:text-3xl font-bold text-[#0F2C3D] leading-snug max-w-xl">
+                <h2 className="text-[22px] xl:text-3xl font-bold text-[#083B44] leading-snug max-w-xl">
                   Lifestyle wellness programs designed by holistic doctors,
                   integrating yoga, nutrition, and evidence-based natural
                   approaches
@@ -374,8 +374,8 @@ const About = () => {
             {/* LEFT */}
             <div className="w-full lg:w-[40%]">
               <h2 className="font-bold leading-[1.15] mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px] lg:whitespace-nowrap">
-                <span className="text-[#0F2C3D]">Frequently Asked </span>
-                <span className="text-orange-500">Questions</span>
+                <span className="text-[#083B44]">Frequently Asked </span>
+                <span className="text-[#4F46E5]">Questions</span>
               </h2>
 
               <p className="text-gray-500 text-xs sm:text-sm md:text-base leading-relaxed max-w-[420px] mb-5 sm:mb-6 lg:mb-8">
@@ -424,7 +424,7 @@ const About = () => {
       <section className="bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 lg:py-16">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20 flex-wrap">
-            <p className="text-sm sm:text-base md:text-lg font-semibold text-[#0F2C3D]">
+            <p className="text-sm sm:text-base md:text-lg font-semibold text-[#083B44]">
               Our Partners
             </p>
             {PARTNERS.map((partner) => (
@@ -447,7 +447,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-6 sm:gap-8 lg:gap-14 items-start">
             {/* LEFT — heading + controls */}
             <div className="lg:sticky lg:top-8">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0F2C3D] leading-[1.1] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#083B44] leading-[1.1] tracking-tight">
                 Stories of
                 <br />
                 Transformation
@@ -480,8 +480,8 @@ const About = () => {
                   aria-label="Next testimonial"
                   className="
                     w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center
-                    bg-orange-500 text-white
-                    hover:bg-orange-600 transition-colors
+                    bg-[#4F46E5] text-white
+                    hover:bg- [#4338CA] transition-colors
                     disabled:opacity-30 disabled:cursor-not-allowed
                   "
                 >
@@ -516,7 +516,7 @@ const About = () => {
                         flex flex-col justify-between
                         ${
                           isOrange
-                            ? "bg-orange-500 text-white"
+                            ? "bg-[#4F46E5] text-white"
                             : "bg-gray-50 text-gray-700 border border-gray-100"
                         }
                       `}
