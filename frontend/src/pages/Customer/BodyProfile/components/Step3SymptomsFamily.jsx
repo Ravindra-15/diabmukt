@@ -10,7 +10,7 @@ import { Heart, Dna } from "lucide-react";
 // 🪪 CHIP PICKER (single select)
 const ChipPicker = ({ label, value, options, onChange }) => (
   <div>
-    <label className="block text-xs font-semibold text-gray-700 mb-2">
+    <label className="block text-xs font-semibold text-[#374151] mb-2">
       {label}
     </label>
     <div className="flex flex-wrap gap-2">
@@ -26,8 +26,8 @@ const ChipPicker = ({ label, value, options, onChange }) => (
               transition-colors
               ${
                 isActive
-                  ? "bg-[#4F46E5] text-white border-[#4F46E5] shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
-                  : "bg-white text-gray-700 border-gray-200 hover:border-orange-300"
+                  ? "bg-[#4F46E5] text-white border-[#4F46E5] shadow-[0_4px_10px_rgba(91,79,247,0.25)]"
+                  : "bg-white text-[#374151] border-[#D9DDF0] hover:border-[#D9DDF0]"
               }
             `}
           >
@@ -68,7 +68,7 @@ const Step3SymptomsFamily = ({ data, onChange }) => {
           <div className="w-7 h-7 rounded-lg bg-amber-50 flex items-center justify-center">
             <Heart size={14} className="text-amber-500" />
           </div>
-          <h3 className="text-sm font-bold text-gray-900">
+          <h3 className="text-sm font-bold text-[#1F2937]">
             Symptoms & Well-being
           </h3>
         </div>
@@ -124,7 +124,7 @@ const Step3SymptomsFamily = ({ data, onChange }) => {
           <div className="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center">
             <Dna size={14} className="text-purple-500" />
           </div>
-          <h3 className="text-sm font-bold text-gray-900">
+          <h3 className="text-sm font-bold text-[#1F2937]">
             Family Medical History
           </h3>
         </div>

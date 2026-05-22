@@ -37,8 +37,8 @@ const typeMeta = {
   },
   general: {
     icon: Bell,
-    bg: "bg-gray-50",
-    color: "text-gray-500",
+    bg: "bg-[#F6F8FC]",
+    color: "text-[#6B7280]",
   },
 };
 
@@ -61,8 +61,8 @@ export default function NotificationItem({ notification, onClick }) {
       onClick={onClick}
       className={`w-full text-left border rounded-xl p-4 flex items-start gap-3 transition-colors ${
         notification.read
-          ? "border-gray-100 bg-white hover:border-gray-200"
-          : "border-orange-100 bg-[#F3F1FF]/30 hover:border-orange-200"
+          ? "border-[#E7EAF3] bg-white hover:border-[#D9DDF0]"
+          : "border-[#E7EAF3] bg-[#F3F1FF]/30 hover:border-orange-200"
       }`}
     >
       <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${meta.bg}`}>
@@ -81,7 +81,7 @@ export default function NotificationItem({ notification, onClick }) {
             {formatTimeAgo(notification.createdAt)}
           </span>
         </div>
-        <p className="text-xs text-gray-600 mt-1 leading-relaxed">{notification.body}</p>
+        <p className="text-xs text-[#6B7280] mt-1 leading-relaxed">{notification.body}</p>
       </div>
     </button>
   );

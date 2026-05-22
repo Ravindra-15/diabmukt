@@ -20,7 +20,7 @@ import DoctorCard from "./DoctorCard";
 // 💀 LOADING SKELETON (single card shape)
 // ============================================
 const CardSkeleton = () => (
-  <div className="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 animate-pulse">
+  <div className="bg-white rounded-2xl border border-[#E7EAF3] p-5 sm:p-6 animate-pulse">
     <div className="flex flex-col lg:flex-row gap-5">
       <div className="flex flex-col items-center lg:w-44">
         <div className="w-20 h-20 rounded-full bg-gray-200" />
@@ -53,7 +53,7 @@ const EmptyState = ({ onClearFilters }) => (
       <Stethoscope size={20} className="text-gray-400" />
     </div>
     <p className="text-sm font-medium text-[#1F2937] mb-1">No doctors found</p>
-    <p className="text-xs text-gray-500 mb-4">
+    <p className="text-xs text-[#6B7280] mb-4">
       Try adjusting your search or specialty filter.
     </p>
     {onClearFilters && (

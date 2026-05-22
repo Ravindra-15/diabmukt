@@ -91,12 +91,12 @@ const ConsultationCard = ({
           </p>
         </div>
 
-        <div className="border border-gray-200 rounded-xl px-3 py-2.5">
-          <div className="flex items-center gap-1.5 text-[11px] text-gray-500 font-semibold tracking-wide uppercase">
+        <div className="border border-[#D9DDF0] rounded-xl px-3 py-2.5">
+          <div className="flex items-center gap-1.5 text-[11px] text-[#6B7280] font-semibold tracking-wide uppercase">
             <Clock size={11} />
             Time
           </div>
-          <p className="text-sm font-semibold text-gray-900 mt-1">
+          <p className="text-sm font-semibold text-[#1F2937] mt-1">
             {formatTime(scheduledAt)}
           </p>
         </div>

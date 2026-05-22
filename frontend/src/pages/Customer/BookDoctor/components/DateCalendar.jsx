@@ -146,7 +146,7 @@ const DateCalendar = ({ selectedDate, onSelect }) => {
           className="
             w-7 h-7 rounded-lg
             flex items-center justify-center
-            text-gray-600 hover:bg-white hover:text-[#4338CA]
+            text-[#6B7280] hover:bg-white hover:text-[#4338CA]
             disabled:opacity-30 disabled:cursor-not-allowed
             transition-colors
           "

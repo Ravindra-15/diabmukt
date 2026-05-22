@@ -76,8 +76,8 @@ export default function ProgramCheckout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-500/60 flex items-center justify-center px-4 py-10">
-      <div className="bg-white rounded-[32px] shadow-2xl w-full max-w-3xl overflow-hidden border border-gray-100">
+    <div className="min-h-screen bg-[#F6F8FC]0/60 flex items-center justify-center px-4 py-10">
+      <div className="bg-white rounded-[32px] shadow-2xl w-full max-w-3xl overflow-hidden border border-[#E7EAF3]">
 
         {/* HEADER */}
         <div className="bg-gradient-to-r from-[#4F46E5] to-[#6366F1]px-8 py-6 relative">
@@ -102,38 +102,38 @@ export default function ProgramCheckout() {
           <div>
             <div className="flex items-start justify-between gap-4 mb-6">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 leading-snug">
+                <h3 className="text-2xl font-bold text-[#1F2937] leading-snug">
                   Your{" "}
                   <span className="text-[#4F46E5]">{tenure}</span>{" "}
                   Wellness Plan
                 </h3>
-                <p className="text-gray-500 mt-2 text-sm leading-relaxed">
+                <p className="text-[#6B7280] mt-2 text-sm leading-relaxed">
                   Access guided recovery videos, premium wellness content,
                   expert-led sessions and progress tracking.
                 </p>
               </div>
-              <div className="bg-[#F3F1FF] border border-orange-100 rounded-2xl px-4 py-3 flex flex-col items-center gap-1 shrink-0">
+              <div className="bg-[#F3F1FF] border border-[#E7EAF3] rounded-2xl px-4 py-3 flex flex-col items-center gap-1 shrink-0">
                 <Calendar size={18} className="text-[#4F46E5]" />
-                <span className="text-xs font-semibold text-gray-700 text-center leading-tight">
+                <span className="text-xs font-semibold text-[#374151] text-center leading-tight">
                   {tenure}
                 </span>
               </div>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-5">
+            <div className="bg-white border border-[#D9DDF0] rounded-2xl p-5 mb-5">
               <h4 className="font-bold text-gray-800 mb-4 text-base">
                 Order Summary
               </h4>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">Program</span>
+                  <span className="text-[#6B7280]">Program</span>
                   <span className="font-semibold text-gray-800">{programName}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-gray-500">Duration</span>
+                  <span className="text-[#6B7280]">Duration</span>
                   <span className="font-semibold text-gray-800">{tenure}</span>
                 </div>
-                <div className="border-t border-gray-100 pt-3 flex items-center justify-between">
+                <div className="border-t border-[#E7EAF3] pt-3 flex items-center justify-between">
                   <span className="font-bold text-gray-800">Total</span>
                   <span className="text-3xl font-bold text-[#4F46E5]">${price}</span>
                 </div>
@@ -141,7 +141,7 @@ export default function ProgramCheckout() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#374151] mb-2">
                 Referral Code
               </label>
               <div className="flex gap-3">
@@ -150,9 +150,9 @@ export default function ProgramCheckout() {
                   value={form.referralCode}
                   onChange={handle}
                   placeholder="Enter referral code"
-                  className="flex-1 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-[#4F46E5] transition-colors"
+                  className="flex-1 border border-[#D9DDF0] rounded-2xl px-4 py-3 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
-                <button className="px-5 rounded-2xl border border-orange-300 text-[#4F46E5] font-semibold hover:bg-[#F3F1FF] transition-colors text-sm">
+                <button className="px-5 rounded-2xl border border-[#D9DDF0] text-[#4F46E5] font-semibold hover:bg-[#F3F1FF] transition-colors text-sm">
                   Apply
                 </button>
               </div>
@@ -167,7 +167,7 @@ export default function ProgramCheckout() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1.5">
+                <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                   Card Number
                 </label>
                 <input
@@ -177,13 +177,13 @@ export default function ProgramCheckout() {
                     setForm({ ...form, cardNumber: formatCard(e.target.value) })
                   }
                   placeholder="1234 5678 9012 3456"
-                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
+                  className="w-full border border-[#D9DDF0] rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1.5">
+                  <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                     Expiry
                   </label>
                   <input
@@ -193,11 +193,11 @@ export default function ProgramCheckout() {
                       setForm({ ...form, expiry: formatExpiry(e.target.value) })
                     }
                     placeholder="MM/YY"
-                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
+                    className="w-full border border-[#D9DDF0] rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600 mb-1.5">
+                  <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                     CVV
                   </label>
                   <input
@@ -210,13 +210,13 @@ export default function ProgramCheckout() {
                       })
                     }
                     placeholder="123"
-                    className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
+                    className="w-full border border-[#D9DDF0] rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-600 mb-1.5">
+                <label className="block text-sm font-medium text-[#6B7280] mb-1.5">
                   Cardholder Name
                 </label>
                 <input
@@ -224,14 +224,14 @@ export default function ProgramCheckout() {
                   value={form.cardHolder}
                   onChange={handle}
                   placeholder="Rahul Sharma"
-                  className="w-full border border-gray-200 rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
+                  className="w-full border border-[#D9DDF0] rounded-2xl px-5 py-3.5 text-sm outline-none focus:border-[#4F46E5] transition-colors"
                 />
               </div>
 
               <button
                 onClick={submit}
                 disabled={loading}
-                className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white font-bold py-4 rounded-full transition-all shadow-[0_8px_24px_rgba(249,115,22,0.35)] disabled:opacity-60 mt-2"
+                className="w-full bg-[#4F46E5] hover:bg- [#4338CA] text-white font-bold py-4 rounded-full transition-all shadow-[0_8px_24px_rgba(91,79,247,0.35)] disabled:opacity-60 mt-2"
               >
                 {loading ? "Processing..." : `Pay $${price}`}
               </button>

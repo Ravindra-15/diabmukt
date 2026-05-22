@@ -45,13 +45,13 @@ const Navbar = () => {
         </Link>
 
         {/* CENTER — Desktop nav links */}
-        <div className="hidden md:flex lg:flex-1 lg:max-w-xl lg:mx-auto items-center md:space-x-6 lg:justify-between lg:space-x-0 text-[14px] font-medium text-gray-700">
+        <div className="hidden md:flex lg:flex-1 lg:max-w-xl lg:mx-auto items-center md:space-x-6 lg:justify-between lg:space-x-0 text-[14px] font-medium text-[#374151]">
           {navLinks.map((item) =>
             item.to.includes("#") ? (
               <a
                 key={item.label}
                 href={item.to}
-                className="group relative whitespace-nowrap text-gray-700 hover:text-teal-800 transition-all duration-300"
+                className="group relative whitespace-nowrap text-[#374151] hover:text-teal-800 transition-all duration-300"
               >
                 {item.label}
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#4F46E5] transition-all duration-300 group-hover:w-full" />
@@ -60,7 +60,7 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 to={item.to}
-                className="group relative whitespace-nowrap text-gray-700 hover:text-teal-800 transition-all duration-300"
+                className="group relative whitespace-nowrap text-[#374151] hover:text-teal-800 transition-all duration-300"
               >
                 {item.label}
                 <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#4F46E5] transition-all duration-300 group-hover:w-full" />
@@ -97,7 +97,7 @@ const Navbar = () => {
       {/* Mobile menu */}
       {/* Mobile menu */}
 {mobileMenuOpen && (
-  <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-2 text-[14px] font-medium text-gray-700 animate-in slide-in-from-top duration-300">
+  <div className="md:hidden bg-white border-t border-[#E7EAF3] px-4 py-4 flex flex-col gap-2 text-[14px] font-medium text-[#374151] animate-in slide-in-from-top duration-300">
     
     {navLinks.map((item) =>
       item.to.includes("#") ? (
@@ -107,7 +107,7 @@ const Navbar = () => {
           onClick={() => setMobileMenuOpen(false)}
           className="
             group relative w-fit
-            py-2 text-gray-700
+            py-2 text-[#374151]
             hover:text-teal-800
             transition-all duration-300
           "
@@ -123,7 +123,7 @@ const Navbar = () => {
           onClick={() => setMobileMenuOpen(false)}
           className="
             group relative w-fit
-            py-2 text-gray-700
+            py-2 text-[#374151]
             hover:text-teal-800
             transition-all duration-300
           "

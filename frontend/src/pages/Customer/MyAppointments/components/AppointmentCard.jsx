@@ -54,7 +54,7 @@ const StatusPill = ({ status }) => {
     confirmed: "bg-emerald-50 text-emerald-600 border-emerald-100",
     completed: "bg-blue-50 text-blue-600 border-blue-100",
     cancelled: "bg-red-50 text-red-500 border-red-100",
-    no_show: "bg-gray-100 text-gray-500 border-gray-200",
+    no_show: "bg-gray-100 text-[#6B7280] border-[#D9DDF0]",
   };
 
   const labels = {
@@ -150,7 +150,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
     >
       {/* 🩺 Doctor info */}
       <div className="flex items-center gap-3 flex-1 min-w-0">
-        <div className="w-14 h-14 rounded-full overflow-hidden border border-gray-200 bg-gradient-to-br from-[#EEF2FF] to-[#F5F3FF] flex-shrink-0">
+        <div className="w-14 h-14 rounded-full overflow-hidden border border-[#D9DDF0] bg-gradient-to-br from-[#EEF2FF] to-[#F5F3FF] flex-shrink-0">
           {photoUrl ? (
             <img
               src={photoUrl}

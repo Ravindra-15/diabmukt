@@ -59,7 +59,7 @@ export default function FAQSection() {
               <span className="text-[#4F46E5]">Questions</span>
             </h2>
 
-            <p className="text-gray-500 text-sm sm:text-base leading-relaxed max-w-[420px] mb-6 lg:mb-8">
+            <p className="text-[#6B7280] text-sm sm:text-base leading-relaxed max-w-[420px] mb-6 lg:mb-8">
               Find answers to common questions about our services,
               therapy, and mental well-being.
             </p>

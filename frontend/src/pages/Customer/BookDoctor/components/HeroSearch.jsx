@@ -73,7 +73,7 @@ const HeroSearch = ({
             className="
               w-full pl-6 pr-16 py-4 sm:py-5
               bg-white rounded-full
-              text-sm sm:text-base text-gray-900 placeholder-gray-400
+              text-sm sm:text-base text-[#1F2937] placeholder-gray-400
               focus:outline-none focus:ring-2 focus:ring-[#5B4FF7]/30
               shadow-[0_10px_30px_rgba(0,0,0,0.08)]
               border border-[#ECEFF5]
@@ -129,7 +129,7 @@ const HeroSearch = ({
 
     {/* 🔄 Active filter */}
     {specialty && (
-      <p className="text-sm text-gray-500">
+      <p className="text-sm text-[#6B7280]">
         Filtering by{" "}
         <span className="font-semibold text-[#5B4FF7]">
           {specialty}

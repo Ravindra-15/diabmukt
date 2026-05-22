@@ -119,7 +119,7 @@ const Checkout = () => {
         doctorId: intent.doctorId,
         scheduledAt: intent.scheduledAt,
         notes: "",
-        platform: "yogat20",
+        platform: "diabmukt",
       });
 
       if (!isMountedRef.current) return;
@@ -175,10 +175,10 @@ const Checkout = () => {
           {/* 📋 CHECKOUT BODY                              */}
           {/* ============================================ */}
           {loading ? (
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 animate-pulse h-72" />
+            <div className="bg-white rounded-2xl border border-[#E7EAF3] p-6 animate-pulse h-72" />
           ) : error ? (
-            <div className="bg-white rounded-2xl border border-gray-100 px-6 py-12 text-center">
-              <p className="text-sm font-medium text-gray-700 mb-1">{error}</p>
+            <div className="bg-white rounded-2xl border border-[#E7EAF3] px-6 py-12 text-center">
+              <p className="text-sm font-medium text-[#374151] mb-1">{error}</p>
               <button
                 type="button"
                 onClick={() => navigate("/book-doctor")}

@@ -47,7 +47,7 @@ export default function ConditionsSection() {
               </ul>
               <button
                 onClick={handleStartJourney}
-                className="bg-white hover:bg-gray-50 text-[#4F46E5] text-xs sm:text-sm font-semibold px-6 sm:px-7 py-2.5 rounded-full transition-colors shadow-sm"
+                className="bg-white hover:bg-[#F6F8FC] text-[#4F46E5] text-xs sm:text-sm font-semibold px-6 sm:px-7 py-2.5 rounded-full transition-colors shadow-sm"
               >
                 Start Journey Today
               </button>
@@ -126,7 +126,7 @@ export default function ConditionsSection() {
               </p>
               <button
                 onClick={handleConsultDoctor}
-                className="bg-white hover:bg-gray-50 text-[#4F46E5] text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full transition-colors shadow-sm self-start"
+                className="bg-white hover:bg-[#F6F8FC] text-[#4F46E5] text-xs sm:text-sm font-semibold px-4 sm:px-5 py-2 rounded-full transition-colors shadow-sm self-start"
               >
                 Get Consult Now
               </button>

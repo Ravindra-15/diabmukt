@@ -158,7 +158,7 @@ const OtpVerification = () => {
             <span className="text-[#4F46E5]">Journey Begins</span>
           </h1>
 
-          <p className="text-base text-gray-700 leading-relaxed">
+          <p className="text-base text-[#374151] leading-relaxed">
             Your Privacy Matters , choose what
             <br />
             you want to be addressed
@@ -172,10 +172,10 @@ const OtpVerification = () => {
               Enter Verification Code
             </h2>
 
-            <p className="text-center text-sm text-gray-500 mb-1">
+            <p className="text-center text-sm text-[#6B7280] mb-1">
               We've sent a secure code to
             </p>
-            <p className="text-center text-sm font-medium text-gray-700 mb-6 break-all">
+            <p className="text-center text-sm font-medium text-[#374151] mb-6 break-all">
               {email}
             </p>
 
@@ -207,7 +207,7 @@ const OtpVerification = () => {
               />
               <label
                 htmlFor="keepLoggedIn"
-                className="text-gray-700 cursor-pointer"
+                className="text-[#374151] cursor-pointer"
               >
                 Keep me Logged in
               </label>
@@ -221,7 +221,7 @@ const OtpVerification = () => {
             />
 
             {/* TIMER / RESEND */}
-            <p className="text-center text-sm mt-5 text-gray-500">
+            <p className="text-center text-sm mt-5 text-[#6B7280]">
               {timer > 0 ? (
                 <span>
                   Resend Code in{" "}
@@ -243,7 +243,7 @@ const OtpVerification = () => {
             {/* BACK */}
             <p
               onClick={() => navigate(-1)}
-              className="text-center mt-3 text-sm cursor-pointer text-gray-600 hover:text-gray-800 transition-colors"
+              className="text-center mt-3 text-sm cursor-pointer text-[#6B7280] hover:text-gray-800 transition-colors"
             >
               ← Back
             </p>

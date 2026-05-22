@@ -107,7 +107,7 @@ export default function PricingSection() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-5 sm:gap-6 items-stretch">
             {/* LEFT — Price + Features Card */}
-            <div className="bg-white rounded-3xl border border-gray-200 px-6 sm:px-8 lg:px-10 py-7 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
+            <div className="bg-white rounded-3xl border border-[#D9DDF0] px-6 sm:px-8 lg:px-10 py-7 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-8">
               {/* Price block */}
               <div className="flex flex-col items-start">
                 <div className="flex items-start">
@@ -165,7 +165,7 @@ export default function PricingSection() {
 
               <button
                 onClick={handleConnect}
-                className="bg-white hover:bg-gray-50 text-[#4F46E5] text-sm font-semibold px-7 py-2.5 rounded-full transition-colors shadow-sm"
+                className="bg-white hover:bg-[#F6F8FC] text-[#4F46E5] text-sm font-semibold px-7 py-2.5 rounded-full transition-colors shadow-sm"
               >
                 Connect
               </button>

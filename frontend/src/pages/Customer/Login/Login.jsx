@@ -128,7 +128,9 @@ const Login = () => {
         } else if (!profileStepTwoComplete) {
           navigate("/profile-step-2");
         } else {
-          navigate(next?.startsWith("/") ? next : "/home");
+          // 🎉 Trigger welcome popup on book-doctor page
+          sessionStorage.removeItem("welcomeShown");
+          navigate(next?.startsWith("/") ? next : "/book-doctor");
         }
       }, 300);
     } catch (err) {
@@ -155,7 +157,7 @@ const Login = () => {
             <span className="text-[#4F46E5]">Back to Zealtho</span>
           </h1>
 
-          <p className="mt-4 text-gray-600 text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
+          <p className="mt-4 text-[#6B7280] text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
             Pick up right where you left off — your wellness goals are waiting
           </p>
         </div>
@@ -198,7 +200,7 @@ const Login = () => {
             </div>
 
             {/* REMEMBER */}
-            <div className="flex items-center justify-between text-[13px] text-gray-500">
+            <div className="flex items-center justify-between text-[13px] text-[#6B7280]">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -231,19 +233,19 @@ const Login = () => {
             </div>
 
             {/* GOOGLE */}
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-gray-50">
+            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-[#F6F8FC]">
               <GoogleIcon />
               Continue with Google
             </button>
 
             {/* FACEBOOK */}
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-gray-50">
+            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-[#F6F8FC]">
               <FacebookIcon />
               Continue with Facebook
             </button>
 
             {/* SIGNUP */}
-            <p className="text-[13px] text-gray-500 text-center mt-2">
+            <p className="text-[13px] text-[#6B7280] text-center mt-2">
               Don't have an account?{" "}
               <Link
                 to="/signup"

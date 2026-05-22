@@ -60,7 +60,7 @@ const StepIndicator = ({ currentStep }) => (
                   ? "bg-[#4F46E5] text-white border-[#4F46E5]"
                   : isActive
                   ? "bg-white text- [#4338CA] border-[#4F46E5]"
-                  : "bg-white text-gray-400 border-gray-200"
+                  : "bg-white text-gray-400 border-[#D9DDF0]"
               }
             `}
           >
@@ -165,7 +165,7 @@ const BodyProfileWizard = () => {
   // 🎨 RENDER
   // ============================================
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-[#F6F8FC] flex flex-col">
       <CustomerNavbar />
 
       <main className="flex-1">
@@ -174,7 +174,7 @@ const BodyProfileWizard = () => {
           <button
             type="button"
             onClick={handleBack}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text- [#4338CA] transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-[#6B7280] hover:text- [#4338CA] transition-colors"
             disabled={saving}
           >
             <ArrowLeft size={16} />
@@ -183,10 +183,10 @@ const BodyProfileWizard = () => {
 
           {/* 🏷️ Page title */}
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-[#1F2937] tracking-tight">
               Your Body Profile
             </h1>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-[#6B7280] mt-1">
               Help your doctor personalize your care
             </p>
           </div>
@@ -199,17 +199,17 @@ const BodyProfileWizard = () => {
           {/* ============================================ */}
           <div
             className="
-              bg-white rounded-2xl border border-gray-100
+              bg-white rounded-2xl border border-[#E7EAF3]
               shadow-[0_1px_3px_rgba(16,24,40,0.04)]
               p-5 sm:p-7
             "
           >
             {/* Step header */}
             <div className="mb-6">
-              <h2 className="text-base font-bold text-gray-900">
+              <h2 className="text-base font-bold text-[#1F2937]">
                 {currentMeta.title}
               </h2>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="text-xs text-[#6B7280] mt-0.5">
                 {currentMeta.subtitle}
               </p>
             </div>
@@ -238,7 +238,7 @@ const BodyProfileWizard = () => {
             {/* ============================================ */}
             {/* ⬆️ NAV BUTTONS                                */}
             {/* ============================================ */}
-            <div className="mt-7 pt-5 border-t border-gray-100 flex items-center justify-between gap-3">
+            <div className="mt-7 pt-5 border-t border-[#E7EAF3] flex items-center justify-between gap-3">
               <button
                 type="button"
                 onClick={handleBack}
@@ -246,9 +246,9 @@ const BodyProfileWizard = () => {
                 className="
                   inline-flex items-center gap-1.5
                   px-4 py-2 rounded-full
-                  text-xs font-semibold text-gray-600
-                  bg-white border border-gray-200
-                  hover:bg-gray-50
+                  text-xs font-semibold text-[#6B7280]
+                  bg-white border border-[#D9DDF0]
+                  hover:bg-[#F6F8FC]
                   transition-colors
                   disabled:opacity-50 disabled:cursor-not-allowed
                 "
@@ -268,7 +268,7 @@ const BodyProfileWizard = () => {
                     text-sm font-semibold text-white
                     bg-[#4F46E5] hover:bg- [#4338CA]
                     transition-colors
-                    shadow-[0_4px_14px_rgba(249,115,22,0.3)]
+                    shadow-[0_4px_14px_rgba(91,79,247,0.3)]
                     disabled:opacity-50 disabled:cursor-not-allowed
                   "
                 >
@@ -295,7 +295,7 @@ const BodyProfileWizard = () => {
                     text-sm font-semibold text-white
                     bg-[#4F46E5] hover:bg- [#4338CA]
                     transition-colors
-                    shadow-[0_4px_14px_rgba(249,115,22,0.3)]
+                    shadow-[0_4px_14px_rgba(91,79,247,0.3)]
                     disabled:opacity-50 disabled:cursor-not-allowed
                   "
                 >

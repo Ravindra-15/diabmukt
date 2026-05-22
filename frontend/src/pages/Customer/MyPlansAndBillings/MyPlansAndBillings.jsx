@@ -38,13 +38,13 @@ export default function MyPlansAndBillings() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-[#F6F8FC] flex flex-col">
       <CustomerNavbar />
 
       <main className="flex-1 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-10 py-8">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 text-gray-500 hover:text-[#4F46E5] text-sm mb-6 transition-colors"
+          className="flex items-center gap-2 text-[#6B7280] hover:text-[#5B4FF7] text-sm mb-6 transition-colors"
         >
           <ArrowLeft size={18} />
           Back
@@ -52,13 +52,13 @@ export default function MyPlansAndBillings() {
 
         <div className="text-center mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">My Plans and Billings</h1>
-          <p className="text-gray-500 text-sm mt-1">
+          <p className="text-[#6B7280] text-sm mt-1">
             Manage your identity, view clinical history, and secure your account
           </p>
         </div>
 
         {/* CONSULTATIONS TILE */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(16,24,40,0.04)] p-5 sm:p-6 mb-6 inline-flex flex-col w-full sm:w-auto sm:min-w-[220px]">
+        <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-[0_1px_3px_rgba(16,24,40,0.04)] p-5 sm:p-6 mb-6 inline-flex flex-col w-full sm:w-auto sm:min-w-[220px]">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
               <Activity size={16} className="text-green-500" />
@@ -72,14 +72,14 @@ export default function MyPlansAndBillings() {
         </div>
 
         {/* TRANSACTIONS */}
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_3px_rgba(16,24,40,0.04)] p-5 sm:p-6">
+        <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-[0_1px_3px_rgba(16,24,40,0.04)] p-5 sm:p-6">
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-8 h-8 bg-[#F3F1FF] rounded-lg flex items-center justify-center">
-              <Receipt size={16} className="text-[#4F46E5]" />
+            <div className="w-8 h-8 bg-[#F5F7FF] rounded-lg flex items-center justify-center">
+              <Receipt size={16} className="text-[#5B4FF7]" />
             </div>
             <h3 className="text-base font-bold text-gray-800">Recent Transactions</h3>
           </div>
-          <p className="text-gray-500 text-xs mb-5 ml-10">
+          <p className="text-[#6B7280] text-xs mb-5 ml-10">
             Your complete payment history
           </p>
 
@@ -87,7 +87,7 @@ export default function MyPlansAndBillings() {
           <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-[11px] uppercase tracking-wider text-gray-400 border-b border-gray-100">
+                <tr className="text-left text-[11px] uppercase tracking-wider text-gray-400 border-b border-[#E7EAF3]">
                   <th className="py-3 pr-4 font-medium">Date</th>
                   <th className="py-3 pr-4 font-medium">Description</th>
                   <th className="py-3 pr-4 font-medium">Amount</th>

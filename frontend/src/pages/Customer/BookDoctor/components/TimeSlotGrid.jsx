@@ -45,13 +45,13 @@ const TimeSlotGrid = ({
   if (!hasAnyBookable) {
     return (
       <div className="text-center py-10">
-        <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
+        <div className="w-10 h-10 rounded-full bg-[#F6F8FC] flex items-center justify-center mx-auto mb-3">
           <CalendarOff size={18} className="text-gray-400" />
         </div>
-        <p className="text-sm font-medium text-gray-700 mb-1">
+        <p className="text-sm font-medium text-[#374151] mb-1">
           No slots available
         </p>
-        <p className="text-xs text-gray-500">Try a different date.</p>
+        <p className="text-xs text-[#6B7280]">Try a different date.</p>
       </div>
     );
   }
@@ -78,7 +78,7 @@ const TimeSlotGrid = ({
                 isSelected
                   ? "bg-[#5B4FF7] text-white border-[#5B4FF7] shadow-[0_8px_18px_rgba(91,79,247,0.22)]"
                   : disabled
-                    ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
+                    ? "bg-[#F6F8FC] text-gray-300 border-[#E7EAF3] cursor-not-allowed"
                     : "bg-white text-[#374151] border-[#E7EAF3] hover:border-[#5B4FF7]/40 hover:bg-[#F7F8FF]"
               }
             `}

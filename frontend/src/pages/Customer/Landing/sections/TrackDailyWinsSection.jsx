@@ -69,7 +69,7 @@ export default function TrackDailyWinsSection() {
             return (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)] transition-shadow px-5 py-7 sm:px-6 sm:py-8 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] lg:min-h-[300px]"
+                className="bg-white rounded-2xl border border-[#E7EAF3] shadow-[0_4px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)] transition-shadow px-5 py-7 sm:px-6 sm:py-8 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] lg:min-h-[300px]"
               >
                 <div className="mb-4 sm:mb-5">
                   <Icon size={32} className="text-[#4F46E5]" strokeWidth={2} />
@@ -102,7 +102,7 @@ export default function TrackDailyWinsSection() {
             return (
               <div
                 key={item.id}
-                className={`flex-shrink-0 w-[72%] snap-center bg-white rounded-2xl border border-gray-100 px-5 py-6 flex flex-col items-center text-center min-h-[230px] transition-transform duration-300 ${
+                className={`flex-shrink-0 w-[72%] snap-center bg-white rounded-2xl border border-[#E7EAF3] px-5 py-6 flex flex-col items-center text-center min-h-[230px] transition-transform duration-300 ${
                   isCenter
                     ? "scale-[1.06] shadow-[0_0_40px_rgba(79,70,229,0.20)] border-[#E0DEFB]"
                     : "scale-100 shadow-[0_0_20px_rgba(0,0,0,0.05)]"

@@ -54,12 +54,12 @@ function ReviewCard({ review }) {
      <span className="text-[#4F46E5] text-6xl font-serif leading-none select-none -mb-2">
         &ldquo;
       </span>
-      <p className="text-gray-700 text-sm leading-relaxed flex-1 line-clamp-5">
+      <p className="text-[#374151] text-sm leading-relaxed flex-1 line-clamp-5">
         {review.text}
       </p>
       <div className="pt-2">
-        <p className="text-gray-900 font-bold text-sm">{review.name}</p>
-        <p className="text-gray-500 text-xs mt-0.5">{review.role}</p>
+        <p className="text-[#1F2937] font-bold text-sm">{review.name}</p>
+        <p className="text-[#6B7280] text-xs mt-0.5">{review.role}</p>
       </div>
     </div>
   );
@@ -143,14 +143,14 @@ function LoopingRow({ items }) {
       <div className="flex justify-center gap-3 mt-6">
         <button
           onClick={() => scrollBy(-1)}
-          className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#4F46E5] hover:text-[#4F46E5] text-gray-500 flex items-center justify-center transition-colors"
+          className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#4F46E5] hover:text-[#4F46E5] text-[#6B7280] flex items-center justify-center transition-colors"
           aria-label="Previous"
         >
           <ChevronLeft size={18} />
         </button>
         <button
           onClick={() => scrollBy(1)}
-          className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#4F46E5] hover:text-[#4F46E5] text-gray-500 flex items-center justify-center transition-colors"
+          className="w-10 h-10 rounded-full border border-gray-300 hover:border-[#4F46E5] hover:text-[#4F46E5] text-[#6B7280] flex items-center justify-center transition-colors"
           aria-label="Next"
         >
           <ChevronRight size={18} />

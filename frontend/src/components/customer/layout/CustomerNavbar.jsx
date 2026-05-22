@@ -110,7 +110,7 @@ const CustomerNavbar = () => {
 
   return (
     <div ref={drawerRef}>
-      <header className="fixed top-0 left-0 w-full z-40 bg-white border-b border-gray-100">
+      <header className="fixed top-0 left-0 w-full z-40 bg-white border-b border-[#E7EAF3]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="h-16 flex items-center justify-between gap-4">
             {/* 🏷️ BRAND */}
@@ -131,7 +131,7 @@ const CustomerNavbar = () => {
                     href={link.to}
                     className="
                       relative text-sm font-medium tracking-wide
-                      text-gray-600 hover:text-[#4F46E5]
+                      text-[#6B7280] hover:text-[#4F46E5]
                       transition-all duration-300
                       hover:-translate-y-[1px]
                       after:absolute after:left-0 after:-bottom-1
@@ -158,7 +158,7 @@ const CustomerNavbar = () => {
                       hover:after:w-full ${
                         isActive
                           ? "text-[#083B44] hover:text-[#4F46E5]"
-                          : "text-gray-600 hover:text-[#4F46E5]"
+                          : "text-[#6B7280] hover:text-[#4F46E5]"
                       }`
                     }
                   >
@@ -179,7 +179,7 @@ const CustomerNavbar = () => {
                       `hidden sm:inline-flex w-10 h-10 rounded-full items-center justify-center transition-colors ${
                         isActive
                           ? "bg-teal-50 text-[#083B44]"
-                          : "text-gray-600 hover:bg-gray-50"
+                          : "text-[#6B7280] hover:bg-[#F6F8FC]"
                       }`
                     }
                     aria-label="Notifications"
@@ -224,7 +224,7 @@ const CustomerNavbar = () => {
               <button
                 type="button"
                 onClick={() => setMobileOpen((v) => !v)}
-                className="lg:hidden w-10 h-10 rounded-lg flex items-center justify-center text-gray-600 hover:bg-gray-50"
+                className="lg:hidden w-10 h-10 rounded-lg flex items-center justify-center text-[#6B7280] hover:bg-[#F6F8FC]"
                 aria-label="Toggle menu"
               >
                 {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -235,7 +235,7 @@ const CustomerNavbar = () => {
 
         {/* 📱 MOBILE DRAWER */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white">
+          <div className="lg:hidden border-t border-[#E7EAF3] bg-white">
             <div className="px-4 py-3 flex flex-col gap-1">
               {links.map((link) =>
                 link.to.includes("#") ? (
@@ -243,7 +243,7 @@ const CustomerNavbar = () => {
                     key={link.to}
                     href={link.to}
                     onClick={closeMobile}
-                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-[#374151] hover:bg-[#F6F8FC]"
                   >
                     {link.label}
                   </a>
@@ -256,7 +256,7 @@ const CustomerNavbar = () => {
                       `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         isActive
                           ? "bg-teal-50 text-teal-700"
-                          : "text-gray-700 hover:bg-gray-50"
+                          : "text-[#374151] hover:bg-[#F6F8FC]"
                       }`
                     }
                   >
@@ -270,7 +270,7 @@ const CustomerNavbar = () => {
                   <NavLink
                     to="/notifications"
                     onClick={closeMobile}
-                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-[#374151] hover:bg-[#F6F8FC]"
                   >
                     Notifications
                   </NavLink>

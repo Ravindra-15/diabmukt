@@ -109,7 +109,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
             <span className="text-[#4F46E5]">Journey Begins</span>
           </h1>
 
-          <p className="mt-4 text-gray-600 text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
+          <p className="mt-4 text-[#6B7280] text-[14px] leading-[1.6] max-w-[420px] mx-auto md:mx-0">
             Join thousands building sustainable health habits through
             expert-guided programs
           </p>
@@ -154,7 +154,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
             {/* Phone */}
             <div className="flex w-full gap-2">
               <div className="border border-gray-300 rounded-xl px-3 flex items-center text-sm bg-gray-100">
-                +1
+                +91
               </div>
               <input
                 type="tel"
@@ -183,17 +183,17 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
             </div>
 
             {/* Google */}
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-gray-50">
+            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-[#F6F8FC]">
               <GoogleIcon />
               Continue with Google
             </button>
 
             {/* Facebook */}
-            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-gray-50">
+            <button className="w-full flex items-center justify-center gap-3 border border-gray-300 rounded-full py-2 text-[14px] font-medium hover:bg-[#F6F8FC]">
               <FacebookIcon />
               Continue with Facebook
             </button>
-            <p className="text-[13px] text-gray-500 text-center mt-2">
+            <p className="text-[13px] text-[#6B7280] text-center mt-2">
               Already have an account?{" "}
               <Link
                 to="/login"
@@ -203,7 +203,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
               </Link>
             </p>
 
-            <p className="text-xs text-gray-500 text-center mt-2">
+            <p className="text-xs text-[#6B7280] text-center mt-2">
               By continuing, you agree to Zealtho’s Terms of Service and Privacy
               Policy
             </p>

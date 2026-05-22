@@ -53,7 +53,7 @@ const BookDoctor = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col relative">
+    <div className="min-h-screen bg-[#F6F8FC] flex flex-col relative">
       {/* 🧭 Top navigation */}
       <CustomerNavbar />
 
@@ -95,7 +95,7 @@ const BookDoctor = () => {
       <Modal isOpen={open} onClose={() => setOpen(false)}>
         <div className="text-center px-2">
           <h2 className="text-2xl font-bold text-teal-800 mb-4">
-            Welcome to Zealtho
+            Welcome to Diabmukt
           </h2>
 
           <img
@@ -104,7 +104,7 @@ const BookDoctor = () => {
             className="w-28 h-28 mx-auto mb-5"
           />
 
-          <p className="text-sm text-gray-600 leading-relaxed mb-6">
+          <p className="text-sm text-[#6B7280] leading-relaxed mb-6">
             Discover expert doctors, wellness programs,
             and personalized healing journeys —
             all in one place.

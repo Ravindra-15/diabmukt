@@ -24,7 +24,7 @@ import {
 // ============================================
 const EmptyBucket = ({ label }) => (
   <div className="px-6 py-12 text-center">
-    <p className="text-sm text-gray-500">No {label} appointments yet.</p>
+    <p className="text-sm text-[#6B7280]">No {label} appointments yet.</p>
   </div>
 );
 
@@ -113,7 +113,7 @@ const MyAppointments = () => {
                   mt-4 inline-flex items-center gap-1.5
                   px-5 py-2 rounded-full
                   text-sm font-semibold text-[#5B4FF7]
-                  bg-white hover:bg-gray-50
+                  bg-white hover:bg-[#F6F8FC]
                   transition-colors
                   shadow-[0_4px_14px_rgba(0,0,0,0.1)]
                 "
@@ -139,7 +139,7 @@ const MyAppointments = () => {
               p-5 sm:p-6
             "
           >
-            <p className="text-sm font-bold text-gray-900 mb-4">
+            <p className="text-sm font-bold text-[#1F2937] mb-4">
               Upcoming Appointments
             </p>
 

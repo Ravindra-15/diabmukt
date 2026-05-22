@@ -174,7 +174,7 @@ const DoctorDetail = () => {
 
                   {/* Time slots */}
                   <div>
-                    <p className="text-sm font-bold text-gray-900 mb-3">
+                    <p className="text-sm font-bold text-[#1F2937] mb-3">
                       Select A Time
                     </p>
                     <TimeSlotGrid

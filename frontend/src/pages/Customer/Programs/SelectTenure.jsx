@@ -82,7 +82,7 @@ export default function SelectTenure() {
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-2">
             Select your Tenure
           </h2>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-[#6B7280]">
             {firstName ? (
               <>
                 Hey{" "}
@@ -126,7 +126,7 @@ export default function SelectTenure() {
                 <div
                   key={plan._id}
                   onClick={() => handleSelect(plan)}
-                  className="border border-gray-200 rounded-2xl p-5 hover:border-[#4F46E5] hover:shadow-[0_8px_22px_rgba(79,70,229,0.18)] transition-all cursor-pointer flex flex-col"
+                  className="border border-[#D9DDF0] rounded-2xl p-5 hover:border-[#4F46E5] hover:shadow-[0_8px_22px_rgba(79,70,229,0.18)] transition-all cursor-pointer flex flex-col"
                 >
                   {/* top row */}
                   <div className="flex items-center justify-between mb-2">

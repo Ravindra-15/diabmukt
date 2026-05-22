@@ -100,7 +100,7 @@ function ProgressRing() {
               className="w-2.5 h-2.5 rounded-full shrink-0"
               style={{ backgroundColor: color }}
             />
-            <span className="text-xs text-gray-500 font-medium">
+            <span className="text-xs text-[#6B7280] font-medium">
               {label}{" "}
               <span className="font-bold" style={{ color }}>{value}%</span>
             </span>
@@ -202,7 +202,7 @@ export default function ProgramDashboard() {
   const completedToday = videoData?.completedToday;
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-[#F6F8FC] flex flex-col">
       <CustomerNavbar />
 
       <main className="flex-1">
@@ -211,7 +211,7 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           {/* GREETING CARD + PROGRESS RING                      */}
           {/* ══════════════════════════════════════════════════ */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6 py-7 sm:px-8">
+          <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-sm px-6 py-7 sm:px-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
 
               {/* Left */}
@@ -228,7 +228,7 @@ export default function ProgramDashboard() {
                 </p>
 
                 {/* Date box */}
-                <div className="mt-5 bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto">
+                <div className="mt-5 bg-[#F6F8FC] border border-[#E7EAF3] rounded-xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto">
                   <div>
                     <p className="text-xs text-gray-400 mb-0.5">Today</p>
                     <p className="font-bold text-gray-800 text-sm leading-tight">
@@ -261,14 +261,14 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           {/* 🎬 VIDEO CARD                                       */}
           {/* ══════════════════════════════════════════════════ */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+          <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-sm p-5">
             {loadingVideo ? (
               <p className="py-10 text-center text-sm text-gray-400">
                 Loading video...
               </p>
             ) : !video ? (
               <div className="py-10 text-center">
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-[#6B7280] mb-2">
                   No videos available for {YOGA_TYPES[yogaType].label} yet.
                 </p>
                 <p className="text-xs text-gray-400">
@@ -329,7 +329,7 @@ export default function ProgramDashboard() {
                       href={video.videoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(249,115,22,0.25)] transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#4F46E5] hover:bg- [#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_4px_14px_rgba(91,79,247,0.25)] transition-colors"
                     >
                       <Play size={13} fill="white" />
                       Play Video
@@ -340,7 +340,7 @@ export default function ProgramDashboard() {
                       className={`inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border transition-colors disabled:cursor-not-allowed ${
                         completedToday
                           ? "bg-green-50 border-green-400 text-green-600"
-                          : "border-gray-200 text-gray-600 hover:border-[#6366F1]hover:text-[#4F46E5]"
+                          : "border-[#D9DDF0] text-[#6B7280] hover:border-[#6366F1]hover:text-[#4F46E5]"
                       }`}
                     >
                       <Check size={13} />
@@ -365,7 +365,7 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           {/* 🧘 SUGGESTION CARDS                                */}
           {/* ══════════════════════════════════════════════════ */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+          <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-sm overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-2">
               {suggestions.map((s, idx) => {
                 const isActive = yogaType === s.id;
@@ -374,7 +374,7 @@ export default function ProgramDashboard() {
                     key={s.id}
                     className={`flex flex-col items-center text-center px-8 py-8 ${
                       idx === 0
-                        ? "border-b sm:border-b-0 sm:border-r border-orange-100"
+                        ? "border-b sm:border-b-0 sm:border-r border-[#E7EAF3]"
                         : ""
                     }`}
                   >
@@ -392,7 +392,7 @@ export default function ProgramDashboard() {
                     </p>
                     <button
                       onClick={() => handleSwitchQueue(s.id)}
-                      className={`mt-4 text-sm font-semibold px-12 py-2.5 rounded-full transition-colors shadow-[0_4px_14px_rgba(249,115,22,0.25)] ${
+                      className={`mt-4 text-sm font-semibold px-12 py-2.5 rounded-full transition-colors shadow-[0_4px_14px_rgba(91,79,247,0.25)] ${
                         isActive
                           ? "bg-green-500 hover:bg-green-600 text-white"
                           : "bg-[#4F46E5] hover:bg- [#4338CA] text-white"
@@ -407,7 +407,7 @@ export default function ProgramDashboard() {
 
             {/* Back to Normal Yoga — only shown when on alt queue */}
             {yogaType !== "normal_yoga" && (
-              <div className="text-center py-3 border-t border-gray-100">
+              <div className="text-center py-3 border-t border-[#E7EAF3]">
                 <button
                   onClick={() => handleSwitchQueue("normal_yoga")}
                   className="text-sm text-[#4F46E5] hover:text- [#4338CA] font-medium hover:underline"
@@ -421,7 +421,7 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           {/* 🩺 NEXT DOCTOR CONSULTATION                        */}
           {/* ══════════════════════════════════════════════════ */}
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div className="bg-white rounded-2xl border border-[#E7EAF3] shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 bg-[#F3F1FF] rounded-lg flex items-center justify-center">
                 <Calendar size={15} className="text-[#4F46E5]" />
@@ -433,11 +433,11 @@ export default function ProgramDashboard() {
 
             {nextAppointment ? (
               <div className="bg-blue-50 rounded-xl px-5 py-4">
-                <p className="text-xs text-gray-500 flex items-center gap-1 mb-1">
+                <p className="text-xs text-[#6B7280] flex items-center gap-1 mb-1">
                   <Bell size={11} className="text-blue-400" />
                   Upcoming Check-in
                 </p>
-                <p className="text-sm font-medium text-gray-700">
+                <p className="text-sm font-medium text-[#374151]">
                   {nextAppointment.doctorName ||
                     nextAppointment.doctor?.fullName ||
                     "Doctor"}{" "}
@@ -445,8 +445,8 @@ export default function ProgramDashboard() {
                 </p>
               </div>
             ) : (
-              <div className="bg-gray-50 rounded-xl px-5 py-4 text-center">
-                <p className="text-sm text-gray-500">
+              <div className="bg-[#F6F8FC] rounded-xl px-5 py-4 text-center">
+                <p className="text-sm text-[#6B7280]">
                   No upcoming appointments. Book a doctor consultation anytime.
                 </p>
               </div>

@@ -179,7 +179,7 @@ const About = () => {
       {/* ============================================ */}
       <section className="bg-white">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 lg:py-14">
-          <p className="max-w-3xl mx-auto text-center text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+          <p className="max-w-3xl mx-auto text-center text-xs sm:text-sm md:text-base text-[#6B7280] leading-relaxed">
             Zealtho collects certain personal information to provide you with
             our medical consultation and wellness services. This includes your
             email address, chosen nickname, health-related information you
@@ -201,7 +201,7 @@ const About = () => {
               bg-gradient-to-br from-[#4F46E5] to- [#4338CA]
               rounded-2xl sm:rounded-3xl
               p-6 sm:p-8 md:p-10 lg:p-14
-              shadow-[0_8px_24px_rgba(249,115,22,0.18)]
+              shadow-[0_8px_24px_rgba(91,79,247,0.18)]
             "
           >
             {/* Decorative blobs */}
@@ -378,7 +378,7 @@ const About = () => {
                 <span className="text-[#4F46E5]">Questions</span>
               </h2>
 
-              <p className="text-gray-500 text-xs sm:text-sm md:text-base leading-relaxed max-w-[420px] mb-5 sm:mb-6 lg:mb-8">
+              <p className="text-[#6B7280] text-xs sm:text-sm md:text-base leading-relaxed max-w-[420px] mb-5 sm:mb-6 lg:mb-8">
                 Find answers to common questions about our services, therapy,
                 and mental well-being.
               </p>
@@ -392,7 +392,7 @@ const About = () => {
                         bg-gradient-to-br from-[#FCE9D6] to-[#F8D4B0]
                         h-[150px] sm:h-[230px] md:h-[20px] lg:h-[300px]
                         w-full
-                        shadow-[0_20px_50px_-12px_rgba(249,115,22,0.35)]
+                        shadow-[0_20px_50px_-12px_rgba(91,79,247,0.35)]
                         "
                 />
 
@@ -452,7 +452,7 @@ const About = () => {
                 <br />
                 Transformation
               </h2>
-              <p className="text-xs sm:text-sm md:text-base text-gray-500 leading-relaxed mt-3 sm:mt-4 max-w-sm">
+              <p className="text-xs sm:text-sm md:text-base text-[#6B7280] leading-relaxed mt-3 sm:mt-4 max-w-sm">
                 From building daily yoga habits to managing diabetes reversal,
                 hear how our members are taking control of their health
               </p>
@@ -517,18 +517,18 @@ const About = () => {
                         ${
                           isOrange
                             ? "bg-[#4F46E5] text-white"
-                            : "bg-gray-50 text-gray-700 border border-gray-100"
+                            : "bg-[#F6F8FC] text-[#374151] border border-[#E7EAF3]"
                         }
                       `}
                     >
                       <p
-                        className={`text-xs sm:text-sm md:text-[15px] leading-relaxed ${isOrange ? "text-white" : "text-gray-700"}`}
+                        className={`text-xs sm:text-sm md:text-[15px] leading-relaxed ${isOrange ? "text-white" : "text-[#374151]"}`}
                       >
                         "{t.quote}"
                       </p>
 
                       <div
-                        className={`mt-5 sm:mt-6 text-xs sm:text-sm ${isOrange ? "text-white/90" : "text-gray-500"}`}
+                        className={`mt-5 sm:mt-6 text-xs sm:text-sm ${isOrange ? "text-white/90" : "text-[#6B7280]"}`}
                       >
                         <p className="font-semibold">
                           — {t.name}, {t.age}
