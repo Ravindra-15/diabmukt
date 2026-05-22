@@ -23,10 +23,7 @@ const TimeSlotGrid = ({
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
         {Array.from({ length: 9 }).map((_, i) => (
-          <div
-            key={i}
-            className="h-10 rounded-lg bg-gray-100 animate-pulse"
-          />
+          <div key={i} className="h-10 rounded-lg bg-[#EEF2FF] animate-pulse" />
         ))}
       </div>
     );
@@ -54,9 +51,7 @@ const TimeSlotGrid = ({
         <p className="text-sm font-medium text-gray-700 mb-1">
           No slots available
         </p>
-        <p className="text-xs text-gray-500">
-          Try a different date.
-        </p>
+        <p className="text-xs text-gray-500">Try a different date.</p>
       </div>
     );
   }
@@ -64,35 +59,35 @@ const TimeSlotGrid = ({
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
       {slots
-  .filter((slot) => slot.isBookable)
-  .map((slot) => {
-        const isSelected = selectedTime === slot.time;
-        const disabled = !slot.isBookable;
+        .filter((slot) => slot.isBookable)
+        .map((slot) => {
+          const isSelected = selectedTime === slot.time;
+          const disabled = !slot.isBookable;
 
-        return (
-          <button
-            key={slot.time}
-            type="button"
-            onClick={() => !disabled && onSelect(slot.time)}
-            disabled={disabled}
-            className={`
+          return (
+            <button
+              key={slot.time}
+              type="button"
+              onClick={() => !disabled && onSelect(slot.time)}
+              disabled={disabled}
+              className={`
               h-10 rounded-lg
               text-xs sm:text-sm font-semibold
               transition-colors border
               ${
                 isSelected
-                  ? "bg-shadow-[#4F46E5]text-white border-shadow-[#4F46E5]shadow-[0_4px_10px_rgba(249,115,22,0.3)]"
+                  ? "bg-[#5B4FF7] text-white border-[#5B4FF7] shadow-[0_8px_18px_rgba(91,79,247,0.22)]"
                   : disabled
-                  ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
-                  : "bg-white text-gray-800 border-gray-200 hover:border-orange-300 hover:bg-[#F3F1FF]"
+                    ? "bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed"
+                    : "bg-white text-[#374151] border-[#E7EAF3] hover:border-[#5B4FF7]/40 hover:bg-[#F7F8FF]"
               }
             `}
-            aria-pressed={isSelected}
-          >
-            {formatSlot24h(slot.time)}
-          </button>
-        );
-      })}
+              aria-pressed={isSelected}
+            >
+              {formatSlot24h(slot.time)}
+            </button>
+          );
+        })}
     </div>
   );
 };

@@ -7,7 +7,12 @@
  */
 
 import React from "react";
-import { ChevronLeft, ChevronRight, Stethoscope, LayoutGrid } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Stethoscope,
+  LayoutGrid,
+} from "lucide-react";
 
 import DoctorCard from "./DoctorCard";
 
@@ -43,11 +48,11 @@ const CardSkeleton = () => (
 // 🚫 EMPTY STATE
 // ============================================
 const EmptyState = ({ onClearFilters }) => (
-  <div className="bg-white rounded-2xl border border-dashed border-gray-200 px-6 py-16 text-center">
-    <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center mx-auto mb-3">
+  <div className="bg-white rounded-[28px] border border-dashed border-[#D9DDF0] px-6 py-16 text-center shadow-sm">
+    <div className="w-12 h-12 rounded-full bg-[#F5F7FF] flex items-center justify-center mx-auto mb-3">
       <Stethoscope size={20} className="text-gray-400" />
     </div>
-    <p className="text-sm font-medium text-gray-700 mb-1">No doctors found</p>
+    <p className="text-sm font-medium text-[#1F2937] mb-1">No doctors found</p>
     <p className="text-xs text-gray-500 mb-4">
       Try adjusting your search or specialty filter.
     </p>
@@ -55,7 +60,7 @@ const EmptyState = ({ onClearFilters }) => (
       <button
         type="button"
         onClick={onClearFilters}
-        className="text-xs font-semibold text-[#4338CA] hover:underline"
+        className="text-xs font-semibold text-[#5B4FF7] hover:underline"
       >
         Clear filters
       </button>
@@ -79,11 +84,10 @@ const DoctorList = ({
       {/* 🏷️ Header */}
       <div className="flex items-end justify-between gap-3">
         <div>
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">
-            Top Doctors !{" "}
-            <span className="text-[#4F46E5]">Zero Stress</span>
+          <h2 className="text-lg sm:text-xl font-bold text-[#1F2937] tracking-tight">
+            Top Doctors ! <span className="text-[#5B4FF7]">Zero Stress</span>
           </h2>
-          <p className="text-xs text-gray-500 mt-0.5">
+          <p className="text-xs text-[#6B7280] mt-0.5">
             Find the right expert for your journey
           </p>
         </div>
@@ -94,11 +98,14 @@ const DoctorList = ({
           aria-label="Grid view"
           disabled
           className="
-            w-9 h-9 rounded-lg
-            flex items-center justify-center
-            text-shadow-[#4F46E5]bg-[#F3F1FF] border border-orange-100
-            cursor-default
-          "
+              w-10 h-10 rounded-xl
+              flex items-center justify-center
+              text-[#5B4FF7]
+              bg-[#F5F7FF]
+              border border-[#E7EAF3]
+              shadow-sm
+              cursor-default
+            "
           title="View options coming soon"
         >
           <LayoutGrid size={16} />
@@ -124,13 +131,13 @@ const DoctorList = ({
       {/* 📄 PAGINATION (only if needed) */}
       {!loading && pagination && pagination.totalPages > 1 && (
         <div className="flex items-center justify-between gap-3 pt-2">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-[#6B7280]">
             Page{" "}
-            <span className="font-semibold text-gray-700">
+            <span className="font-semibold text-[#1F2937]">
               {pagination.page}
             </span>{" "}
             of{" "}
-            <span className="font-semibold text-gray-700">
+            <span className="font-semibold text-[#1F2937]">
               {pagination.totalPages}
             </span>{" "}
             ({pagination.total} total)
@@ -144,9 +151,9 @@ const DoctorList = ({
               className="
                 inline-flex items-center gap-1
                 px-3 py-1.5 rounded-lg
-                text-sm font-medium text-gray-700
-                bg-white border border-gray-200
-                hover:bg-gray-50
+                text-sm font-medium text-[#374151]
+                bg-white border border-[#E7EAF3]
+                hover:bg-[#F7F8FF]
                 disabled:opacity-40 disabled:cursor-not-allowed
                 transition-colors
               "
@@ -162,9 +169,9 @@ const DoctorList = ({
               className="
                 inline-flex items-center gap-1
                 px-3 py-1.5 rounded-lg
-                text-sm font-medium text-gray-700
-                bg-white border border-gray-200
-                hover:bg-gray-50
+                text-sm font-medium text-[#374151]
+                bg-white border border-[#E7EAF3]
+                hover:bg-[#F7F8FF]
                 disabled:opacity-40 disabled:cursor-not-allowed
                 transition-colors
               "

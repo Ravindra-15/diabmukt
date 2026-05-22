@@ -145,7 +145,7 @@ const Checkout = () => {
   // 🎨 RENDER
   // ============================================
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-[#F6F8FC] flex flex-col">
       <CustomerNavbar />
 
       <main className="flex-1">
@@ -154,7 +154,7 @@ const Checkout = () => {
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text- [#4338CA] transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-mediumtext-[#6B7280] hover:text-[#5B4FF7] transition-colors"
           >
             <ArrowLeft size={16} />
             Back
@@ -162,10 +162,10 @@ const Checkout = () => {
 
           {/* 🏷️ Page title */}
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-[#1F2937] tracking-tight">
               Secure Checkout
             </h1>
-            <p className="text-xs text-gray-500 mt-1 flex items-center justify-center gap-1">
+            <p className="text-xs text-[#6B7280] mt-1 flex items-center justify-center gap-1">
               <Lock size={11} />
               Your Payment Is Encrypted And Secure
             </p>
@@ -223,9 +223,10 @@ const Checkout = () => {
                   w-full inline-flex items-center justify-center gap-2
                   px-8 py-3.5 rounded-full
                   text-sm font-semibold text-white
-                  bg-[#4F46E5] hover:bg- [#4338CA]
-                  transition-colors
-                  shadow-[0_4px_14px_rgba(249,115,22,0.3)]
+                  bg-[#5B4FF7]
+                  hover:bg-[#4338CA]
+                  transition-all duration-200
+                  shadow-[0_10px_25px_rgba(91,79,247,0.22)]
                   disabled:opacity-50 disabled:cursor-not-allowed
                 "
               >
