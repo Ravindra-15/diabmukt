@@ -15,9 +15,11 @@ export default function ProgramCheckout() {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  const tenure = state?.tenure || "12 Months";
+ const tenure = state?.tenure || "12 Months";
   const price = state?.price || 84;
   const programName = state?.programName || id;
+  const pricingType = state?.pricingType || "fixed";
+  const weeks = state?.weeks || null;
 
   const [form, setForm] = useState({
     cardNumber: "",
@@ -57,13 +59,16 @@ export default function ProgramCheckout() {
       setLoading(true);
       await subscribeToProgram({
         programId: id,
-        tenure,
+        // weekly programs send weeks; fixed programs send tenure
+        ...(pricingType === "weekly"
+          ? { weeks }
+          : { tenure }),
         referralCode: form.referralCode || null,
       });
       toast.success("Subscription activated successfully!");
       setTimeout(() => {
         navigate(`/programs/${id}/success`, {
-          state: { programName, tenure, price },
+          state: { programName, tenure, price, pricingType, weeks },
         });
       }, 400);
     } catch (err) {

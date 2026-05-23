@@ -18,22 +18,38 @@ const features = [
 
 const formatPrice = (n) => `$${Number(n || 0).toLocaleString("en-US")}`;
 
-// Parse tenure into months for /month calculation
-// Supports "12 Months", "12 Weeks", "3 Months" etc.
-const getMonthsFromPlan = (plan) => {
-  if (plan.durationMonths && Number(plan.durationMonths) > 0) {
-    return Number(plan.durationMonths);
-  }
-  const name = String(plan.planName || "");
-  const monthMatch = name.match(/(\d+)\s*month/i);
-  if (monthMatch) return parseInt(monthMatch[1], 10);
-  const weekMatch = name.match(/(\d+)\s*week/i);
-  if (weekMatch) return Math.max(1, Math.round(parseInt(weekMatch[1], 10) / 4));
-  return 1;
-};
-
+// 🧮 Monthly display price — handles both fixed and weekly plans
 const calcMonthlyPrice = (plan) => {
-  const months = getMonthsFromPlan(plan);
+  // Weekly plan: price at minWeeks, converted to per-month
+  if ((plan.pricingType || "fixed") === "weekly") {
+    const base = Number(plan.baseRatePerWeek) || 0;
+    const weeks = Number(plan.minWeeks) || 1;
+
+    // best discount applicable at minWeeks
+    let discount = 0;
+    if (Array.isArray(plan.breakpoints)) {
+      plan.breakpoints.forEach((bp) => {
+        if (weeks >= bp.minWeeks && bp.discountPercent > discount) {
+          discount = bp.discountPercent;
+        }
+      });
+    }
+    const total = base * weeks * (1 - discount / 100);
+    const months = Math.max(1, Math.round(weeks / 4));
+    return Math.round(total / months);
+  }
+
+  // Fixed plan
+  let months = 1;
+  if (plan.durationMonths && Number(plan.durationMonths) > 0) {
+    months = Number(plan.durationMonths);
+  } else {
+    const name = String(plan.planName || "");
+    const m = name.match(/(\d+)\s*month/i);
+    const w = name.match(/(\d+)\s*week/i);
+    if (m) months = parseInt(m[1], 10);
+    else if (w) months = Math.max(1, Math.round(parseInt(w[1], 10) / 4));
+  }
   if (months <= 0) return plan.offerPrice;
   return Math.round(plan.offerPrice / months);
 };

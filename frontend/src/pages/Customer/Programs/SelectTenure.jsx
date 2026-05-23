@@ -1,12 +1,14 @@
 /**
- * Customer — Select Tenure Page
- * Fetches plans dynamically from backend for the current program.
- * Works for any program (yogat20, diabmukt, mommyfit, slimfitter).
+ * Customer — Select Tenure / Design Your Recovery Path
+ * Weekly programs (diabmukt/mommyfit/slimfitter): slider to pick weeks.
+ * Fixed programs (yogat20): falls back to plan cards.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Calendar } from "lucide-react";
 import { getPublicProgramPlans } from "../../../services/programPlanPublicService";
+import { getSubscriptionRedirect } from "../../../utils/subscriptionGuard";
 
 const programNames = {
   yogat20: "Yoga T20",
@@ -17,6 +19,27 @@ const programNames = {
 
 const formatPrice = (n) => `$${Number(n || 0).toLocaleString("en-US")}`;
 
+// 🧮 Discount for a given weeks count (mirrors backend logic)
+const getDiscount = (breakpoints, weeks) => {
+  let discount = 0;
+  let badge = "";
+  if (Array.isArray(breakpoints)) {
+    breakpoints.forEach((bp) => {
+      if (weeks >= bp.minWeeks && bp.discountPercent > discount) {
+        discount = bp.discountPercent;
+        badge = bp.badgeText || `${bp.discountPercent}% off`;
+      }
+    });
+  }
+  return { discount, badge };
+};
+
+const calcWeeklyPrice = (plan, weeks) => {
+  const base = Number(plan.baseRatePerWeek) || 0;
+  const { discount } = getDiscount(plan.breakpoints, weeks);
+  return Math.round(base * weeks * (1 - discount / 100));
+};
+
 export default function SelectTenure() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,8 +48,9 @@ export default function SelectTenure() {
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [weeks, setWeeks] = useState(null);
 
-  // 🙋 Show user's first name in heading
+  // 🙋 First name for heading
   let firstName = "";
   try {
     const raw = localStorage.getItem("user") || sessionStorage.getItem("user");
@@ -36,19 +60,18 @@ export default function SelectTenure() {
     firstName = "";
   }
 
-  // 📥 Fetch plans for this program
+  // 📥 Fetch plans
   useEffect(() => {
     let mounted = true;
     const load = async () => {
       setLoading(true);
       setError(null);
       try {
-        // Fetch ALL active plans (not just landingOnly) so tenure page shows full list
         const fetched = await getPublicProgramPlans(id);
         if (!mounted) return;
         setPlans(fetched || []);
       } catch (err) {
-        console.error("Failed to load tenure plans:", err);
+        console.error("Failed to load plans:", err);
         if (mounted) setError("Failed to load plans. Please try again.");
       } finally {
         if (mounted) setLoading(false);
@@ -60,24 +83,193 @@ export default function SelectTenure() {
     };
   }, [id]);
 
-  const handleSelect = (plan) => {
+  // 🟦 The weekly plan (if this program is weekly)
+  const weeklyPlan = useMemo(
+    () => plans.find((p) => (p.pricingType || "fixed") === "weekly") || null,
+    [plans]
+  );
+
+  // 🟧 Fixed plans (yogat20)
+  const fixedPlans = useMemo(
+    () => plans.filter((p) => (p.pricingType || "fixed") === "fixed"),
+    [plans]
+  );
+
+  // 🎚️ Initialize slider to minWeeks once weekly plan loads
+  useEffect(() => {
+    if (weeklyPlan && weeks === null) {
+      setWeeks(weeklyPlan.minWeeks || 5);
+    }
+  }, [weeklyPlan, weeks]);
+
+  // 🟦 WEEKLY: continue to checkout
+  const handleWeeklyContinue = () => {
+    const amount = calcWeeklyPrice(weeklyPlan, weeks);
+    const intendedPath = `/programs/${id}/checkout`;
+    const redirect = getSubscriptionRedirect(intendedPath);
+    if (redirect) {
+      navigate(redirect);
+      return;
+    }
+    navigate(intendedPath, {
+      state: {
+        programId: id,
+        programName,
+        pricingType: "weekly",
+        weeks,
+        tenure: `${weeks} Weeks`,
+        price: amount,
+      },
+    });
+  };
+
+  // 🟧 FIXED: select a plan
+  const handleFixedSelect = (plan) => {
     navigate(`/programs/${id}/checkout`, {
       state: {
+        programId: id,
+        programName,
+        pricingType: "fixed",
         tenure: plan.planName,
         price: plan.offerPrice,
         originalPrice: plan.originalPrice,
         offerBadge: plan.offerBadge,
-        programId: id,
-        programName,
         planId: plan._id,
       },
     });
   };
 
+  // ════════ LOADING / ERROR ════════
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#EEEBFB] flex items-center justify-center px-4">
+        <p className="text-sm text-gray-500">Loading plans...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[#EEEBFB] flex items-center justify-center px-4">
+        <p className="text-sm text-red-500">{error}</p>
+      </div>
+    );
+  }
+
+  // ════════════════════════════════════════
+  // 🟦 WEEKLY SLIDER VIEW
+  // ════════════════════════════════════════
+  if (weeklyPlan && weeks !== null) {
+    const min = weeklyPlan.minWeeks || 5;
+    const max = weeklyPlan.maxWeeks || 24;
+    const amount = calcWeeklyPrice(weeklyPlan, weeks);
+    const pct = max > min ? ((weeks - min) / (max - min)) * 100 : 0;
+
+    // Marker positions for each breakpoint (for the red badges under track)
+    const markers = (weeklyPlan.breakpoints || [])
+      .filter((bp) => bp.minWeeks >= min && bp.minWeeks <= max)
+      .map((bp) => ({
+        ...bp,
+        left: max > min ? ((bp.minWeeks - min) / (max - min)) * 100 : 0,
+      }));
+
+    return (
+      <div className="min-h-screen bg-[#EEEBFB] flex items-center justify-center px-4 py-10">
+        <div className="bg-white rounded-3xl shadow-xl w-full max-w-2xl px-6 sm:px-10 py-9">
+          {/* Heading */}
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-2">
+              Design your Recovery Path
+            </h2>
+            <p className="text-sm text-[#6B7280]">
+              {firstName ? (
+                <>
+                  Hey{" "}
+                  <span className="text-[#4F46E5] font-semibold">
+                    {firstName}
+                  </span>
+                  ,{" "}
+                </>
+              ) : null}
+              Select your Program Duration . Minimum Commitment should be{" "}
+              {min} weeks
+            </p>
+          </div>
+
+          {/* Selected tenure box */}
+          <div className="border border-[#D9DDF0] rounded-2xl px-5 py-4 flex items-center justify-between mb-8 max-w-sm mx-auto">
+            <span className="text-sm text-gray-400">Selected Tenure</span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-[#0F172A]">
+                {weeks} Weeks
+              </span>
+              <Calendar size={20} className="text-[#4F46E5]" />
+            </div>
+          </div>
+
+          {/* Slider */}
+          <div className="px-2 mb-2">
+            <input
+              type="range"
+              min={min}
+              max={max}
+              step={1}
+              value={weeks}
+              onChange={(e) => setWeeks(Number(e.target.value))}
+              className="w-full accent-[#4F46E5] cursor-pointer"
+              style={{
+                background: `linear-gradient(to right, #4F46E5 ${pct}%, #E5E7EB ${pct}%)`,
+              }}
+            />
+          </div>
+
+          {/* Breakpoint markers */}
+          <div className="relative h-12 mb-6 px-2">
+            {markers.map((m) => (
+              <div
+                key={m.minWeeks}
+                className="absolute -translate-x-1/2 flex flex-col items-center"
+                style={{ left: `${m.left}%` }}
+              >
+                <span className="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded mb-1 whitespace-nowrap">
+                  {m.badgeText || `${m.discountPercent}% off`}
+                </span>
+                <span className="text-[10px] text-gray-500 whitespace-nowrap">
+                  {m.minWeeks}w
+                </span>
+              </div>
+            ))}
+          </div>
+
+          {/* Price */}
+          <div className="text-center mb-7">
+            <span className="text-[34px] sm:text-[40px] font-bold text-[#0F172A] leading-none">
+              {formatPrice(amount)}
+            </span>
+            <p className="text-xs text-gray-400 mt-1">
+              for {weeks} weeks ({formatPrice(weeklyPlan.baseRatePerWeek)}/week
+              base)
+            </p>
+          </div>
+
+          {/* Continue */}
+          <button
+            onClick={handleWeeklyContinue}
+            className="w-full bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-semibold py-3.5 rounded-full transition-colors shadow-[0_6px_18px_rgba(79,70,229,0.3)]"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ════════════════════════════════════════
+  // 🟧 FIXED PLAN VIEW (yogat20)
+  // ════════════════════════════════════════
   return (
     <div className="min-h-screen bg-gray-900/80 flex items-center justify-center px-4 py-12">
       <div className="bg-white rounded-3xl shadow-xl w-full max-w-3xl px-6 sm:px-10 py-10">
-        {/* heading */}
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-2">
             Select your Tenure
@@ -96,39 +288,29 @@ export default function SelectTenure() {
           </p>
         </div>
 
-        {/* states */}
-        {loading ? (
-          <p className="text-center text-sm text-gray-400 py-10">
-            Loading plans...
-          </p>
-        ) : error ? (
-          <p className="text-center text-sm text-red-500 py-10">{error}</p>
-        ) : plans.length === 0 ? (
+        {fixedPlans.length === 0 ? (
           <p className="text-center text-sm text-gray-400 py-10">
             No plans available for this program yet.
           </p>
         ) : (
           <div
             className={`grid gap-4 ${
-              plans.length === 1
+              fixedPlans.length === 1
                 ? "grid-cols-1 max-w-sm mx-auto"
-                : plans.length === 2
+                : fixedPlans.length === 2
                 ? "grid-cols-1 sm:grid-cols-2"
                 : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             }`}
           >
-            {plans.map((plan) => {
+            {fixedPlans.map((plan) => {
               const hasDiscount =
-                plan.originalPrice &&
-                plan.originalPrice > plan.offerPrice;
-
+                plan.originalPrice && plan.originalPrice > plan.offerPrice;
               return (
                 <div
                   key={plan._id}
-                  onClick={() => handleSelect(plan)}
+                  onClick={() => handleFixedSelect(plan)}
                   className="border border-[#D9DDF0] rounded-2xl p-5 hover:border-[#4F46E5] hover:shadow-[0_8px_22px_rgba(79,70,229,0.18)] transition-all cursor-pointer flex flex-col"
                 >
-                  {/* top row */}
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-semibold text-[#0F172A] text-base">
                       {plan.planName}
@@ -139,8 +321,6 @@ export default function SelectTenure() {
                       </span>
                     )}
                   </div>
-
-                  {/* original price */}
                   <p
                     className={`text-xs text-gray-400 line-through mb-1 ${
                       hasDiscount ? "" : "invisible"
@@ -148,17 +328,13 @@ export default function SelectTenure() {
                   >
                     {formatPrice(plan.originalPrice)}
                   </p>
-
-                  {/* price */}
                   <p className="text-2xl font-bold text-[#0F172A] mb-4">
                     {formatPrice(plan.offerPrice)}
                   </p>
-
-                  {/* select button */}
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleSelect(plan);
+                      handleFixedSelect(plan);
                     }}
                     className="mt-auto w-full bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-semibold py-2.5 rounded-full transition-colors shadow-[0_4px_14px_rgba(79,70,229,0.32)]"
                   >
