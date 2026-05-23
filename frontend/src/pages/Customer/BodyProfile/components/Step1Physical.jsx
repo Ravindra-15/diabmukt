@@ -24,7 +24,7 @@ const Field = ({ label, value, onChange, placeholder, type = "text", suffix = ""
           w-full px-3 py-2.5
           bg-white border border-[#D9DDF0] rounded-xl
           text-sm text-[#1F2937] placeholder-gray-400
-          focus:outline-none focus:border-[#4F46E5] focus:ring-1 focus:ring-[#4F46E5]
+          focus:outline-none focus:border-[#5B4FF7] focus:ring-1 focus:ring-[#4F46E5]
           transition-colors
         "
       />

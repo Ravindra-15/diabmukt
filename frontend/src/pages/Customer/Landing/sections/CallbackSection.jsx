@@ -36,7 +36,7 @@ export default function CallbackSection() {
         email: form.email.trim(),
         phone: form.phone.trim(),
         message: form.message.trim(),
-        source: "zealtho",
+        source: "diabmukt",
       });
       toast.success("We'll call you back within 12 hours!");
       setForm(initialForm);
@@ -50,7 +50,7 @@ export default function CallbackSection() {
   };
 
   const inputClass =
-    "w-full border-0 border-b border-[#7C97A0] focus:border-[#4F46E5] outline-none py-2 text-sm text-[#083B44] placeholder-[#083B44] bg-transparent transition-colors";
+    "w-full border-0 border-b border-[#7C97A0] focus:border-[#5B4FF7] outline-none py-2 text-sm text-[#083B44] placeholder-[#083B44] bg-transparent transition-colors";
 
   return (
     <section id="callback" className="bg-white">
@@ -73,7 +73,7 @@ export default function CallbackSection() {
               name="name"
               value={form.name}
               onChange={handle}
-              placeholder="Name"
+              placeholder="Name *"
               className={inputClass}
             />
             <input
@@ -88,7 +88,7 @@ export default function CallbackSection() {
               name="phone"
               value={form.phone}
               onChange={handle}
-              placeholder="Mobile Number"
+              placeholder="Mobile Number *"
               type="tel"
               className={inputClass}
             />
@@ -96,7 +96,7 @@ export default function CallbackSection() {
               name="message"
               value={form.message}
               onChange={handle}
-              placeholder="Message"
+              placeholder="Message *"
               className={inputClass}
             />
             <button

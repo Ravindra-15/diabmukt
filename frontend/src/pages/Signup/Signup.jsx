@@ -129,7 +129,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
               name="email"
               value={form.email}
               onChange={handleChange}
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#5B4FF7]"
             />
 
             {/* Password */}
@@ -140,7 +140,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#5B4FF7]"
               />
               <button
                 type="button"
@@ -162,7 +162,7 @@ const [form, setForm] = useState({ email: "", password: "", phone: "" });
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#4F46E5]"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 text-[14px] font-normal outline-none focus:border-[#5B4FF7]"
               />
             </div>
 

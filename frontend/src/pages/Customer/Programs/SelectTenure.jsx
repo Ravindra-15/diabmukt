@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Calendar } from "lucide-react";
 import { getPublicProgramPlans } from "../../../services/programPlanPublicService";
 import { getSubscriptionRedirect } from "../../../utils/subscriptionGuard";
+import SubscriptionCallbackCTA from "./components/SubscriptionCallbackCTA";
 
 const programNames = {
   yogat20: "Yoga T20",
@@ -174,8 +175,9 @@ export default function SelectTenure() {
       }));
 
     return (
-      <div className="min-h-screen bg-[#EEEBFB] flex items-center justify-center px-4 py-10">
-        <div className="bg-white rounded-3xl shadow-xl w-full max-w-2xl px-6 sm:px-10 py-9">
+      <div className="min-h-screen bg-[#EEEBFB] px-4 py-10">
+        <div className="w-full max-w-[820px] mx-auto flex flex-col gap-5">
+        <div className="bg-white rounded-3xl shadow-xl w-full px-6 sm:px-10 py-9">
           {/* Heading */}
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A] mb-2">
@@ -252,13 +254,17 @@ export default function SelectTenure() {
             </p>
           </div>
 
-          {/* Continue */}
+         {/* Continue */}
           <button
             onClick={handleWeeklyContinue}
             className="w-full bg-[#4F46E5] hover:bg-[#4338CA] text-white text-sm font-semibold py-3.5 rounded-full transition-colors shadow-[0_6px_18px_rgba(79,70,229,0.3)]"
           >
             Continue
           </button>
+       </div>
+
+        {/* Callback CTA below the slider card */}
+        <SubscriptionCallbackCTA programId={id} />
         </div>
       </div>
     );
