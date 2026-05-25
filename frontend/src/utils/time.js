@@ -19,7 +19,6 @@ export const formatUtcTime12h = (iso) => {
     timeZone: "UTC",
   });
 };
-
 export const formatUtcTime24h = (iso) => {
   if (!iso) return "—";
 
