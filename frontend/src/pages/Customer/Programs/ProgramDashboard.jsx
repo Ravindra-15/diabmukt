@@ -273,25 +273,27 @@ export default function ProgramDashboard() {
                   Let's track your wellness journey for today
                 </p>
 
-                <div className="mt-5 bg-[#F6F8FC] border border-[#E7EAF3] rounded-2xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto">
+               <button
+                  onClick={() => navigate(`/programs/${id}/progress-report`)}
+                  className="mt-5 bg-[#F6F8FC] border border-[#E7EAF3] rounded-2xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto text-left hover:border-[#5B4FF7] transition-colors"
+                >
                   <div>
-                    <p className="text-xs text-[#9CA3AF] mb-0.5">Today</p>
-
+                    <p className="text-xs text-[#9CA3AF] mb-0.5">
+                      Today
+                    </p>
                     <p className="font-bold text-[#1F2937] text-sm leading-tight">
                       {formatToday()}
                     </p>
-
-                    <p className="text-xs text-[#9CA3AF] mt-1">
+                    <p className="text-xm text-[#76787c] mt-1">
                       Click to view your past logs
                     </p>
                   </div>
-
                   <img
-                    src="https://cdn-icons-png.flaticon.com/512/2693/2693507.png"
+                    src="/images/calendar.png"
                     alt="calendar"
-                    className="w-10 h-10 object-contain shrink-0"
+                    className="w-20 h-20 object-contain shrink-0"
                   />
-                </div>
+                </button>
 
                 <button
                   onClick={() => navigate(`/programs/${id}/add-progress`)}
