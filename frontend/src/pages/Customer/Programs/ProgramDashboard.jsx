@@ -3,7 +3,7 @@
 // Uses real clinical videos from admin CMS + real upcoming appointment
 
 import { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Play, Check, Plus, Bell, Calendar } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -17,6 +17,7 @@ import {
 } from "../../../services/clinicalVideoService";
 
 import { listMyAppointments } from "../../../services/customerAppointmentService";
+import { fetchMyProfile } from "../../../services/customerProfileService";
 
 const programTitles = {
   yogat20: "Yoga T20",
@@ -107,15 +108,21 @@ const formatToday = () =>
     day: "2-digit",
   });
 
+  // 🕒 Returns "Good Morning/Afternoon/Evening" based on current hour
+const getGreeting = () => {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning";
+  if (hour < 17) return "Good Afternoon";
+  return "Good Evening";
+};
+
 const formatAppointmentDate = (date) => {
   if (!date) return "";
 
   const d = new Date(date);
   const now = new Date();
 
-  const diffDays = Math.round(
-    (d - now) / (1000 * 60 * 60 * 24)
-  );
+  const diffDays = Math.round((d - now) / (1000 * 60 * 60 * 24));
 
   const timeStr = d.toLocaleTimeString("en-US", {
     hour: "2-digit",
@@ -124,8 +131,7 @@ const formatAppointmentDate = (date) => {
 
   if (diffDays === 0) return `Today, ${timeStr}`;
   if (diffDays === 1) return `Tomorrow, ${timeStr}`;
-  if (diffDays > 1 && diffDays <= 7)
-    return `In ${diffDays} days, ${timeStr}`;
+  if (diffDays > 1 && diffDays <= 7) return `In ${diffDays} days, ${timeStr}`;
 
   return `${d.toLocaleDateString("en-US", {
     month: "short",
@@ -135,6 +141,7 @@ const formatAppointmentDate = (date) => {
 
 export default function ProgramDashboard() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const programTitle = programTitles[id] || "Program";
 
@@ -142,7 +149,7 @@ export default function ProgramDashboard() {
   const [loadingVideo, setLoadingVideo] = useState(true);
   const [markingComplete, setMarkingComplete] = useState(false);
   const [nextAppointment, setNextAppointment] = useState(null);
-
+  const [userName, setUserName] = useState(""); // logged-in user's display name
   // ─────────────────────────────────────────────
   // Load Today's Video
   // ─────────────────────────────────────────────
@@ -182,9 +189,7 @@ export default function ProgramDashboard() {
         const appointments = result?.appointments || [];
 
         const sorted = [...appointments].sort(
-          (a, b) =>
-            new Date(a.scheduledAt) -
-            new Date(b.scheduledAt)
+          (a, b) => new Date(a.scheduledAt) - new Date(b.scheduledAt),
         );
 
         setNextAppointment(sorted[0] || null);
@@ -200,15 +205,29 @@ export default function ProgramDashboard() {
     };
   }, []);
 
+  // 📥 Load the logged-in user's name for the greeting
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        const profile = await fetchMyProfile();
+        if (mounted) {
+          setUserName(profile?.fullName || profile?.nickName || "");
+        }
+      } catch {
+        // soft fail — greeting shows without a name
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   // ─────────────────────────────────────────────
   // Mark Complete
   // ─────────────────────────────────────────────
   const handleMarkComplete = async () => {
-    if (
-      !videoData?.video ||
-      videoData.completedToday ||
-      markingComplete
-    )
+    if (!videoData?.video || videoData.completedToday || markingComplete)
       return;
 
     setMarkingComplete(true);
@@ -216,16 +235,11 @@ export default function ProgramDashboard() {
     try {
       await markVideoComplete(videoData.video._id);
 
-      toast.success(
-        "Video marked as complete! See you tomorrow."
-      );
+      toast.success("Video marked as complete! See you tomorrow.");
 
       await loadVideo();
     } catch (err) {
-      toast.error(
-        err?.response?.data?.message ||
-          "Failed to mark complete"
-      );
+      toast.error(err?.response?.data?.message || "Failed to mark complete");
     } finally {
       setMarkingComplete(false);
     }
@@ -240,32 +254,28 @@ export default function ProgramDashboard() {
 
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5">
-
           {/* Greeting Card */}
           <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] px-6 py-7 sm:px-8">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-
               <div className="flex-1 min-w-0">
                 <p className="text-[#5B4FF7] font-semibold text-sm mb-1">
                   {programTitle}
                 </p>
 
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937] leading-tight">
-                  Good Morning,{" "}
+                  {getGreeting()},{" "}
                   <span className="text-[#5B4FF7]">
-                    Anandadas
+                    {userName || "there"}
                   </span>
                 </h2>
-
+                
                 <p className="text-[#9CA3AF] text-sm mt-1">
                   Let's track your wellness journey for today
                 </p>
 
                 <div className="mt-5 bg-[#F6F8FC] border border-[#E7EAF3] rounded-2xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto">
                   <div>
-                    <p className="text-xs text-[#9CA3AF] mb-0.5">
-                      Today
-                    </p>
+                    <p className="text-xs text-[#9CA3AF] mb-0.5">Today</p>
 
                     <p className="font-bold text-[#1F2937] text-sm leading-tight">
                       {formatToday()}
@@ -283,7 +293,10 @@ export default function ProgramDashboard() {
                   />
                 </div>
 
-                <button className="mt-5 flex items-center gap-2 bg-[#5B4FF7] hover:bg-[#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_8px_20px_rgba(91,79,247,0.22)] transition-all duration-200">
+                <button
+                  onClick={() => navigate(`/programs/${id}/add-progress`)}
+                  className="mt-5 flex items-center gap-2 bg-[#5B4FF7] hover:bg-[#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_8px_20px_rgba(91,79,247,0.22)] transition-all duration-200"
+                >
                   <Plus size={15} />
                   Add Progress
                 </button>
@@ -313,7 +326,6 @@ export default function ProgramDashboard() {
               </div>
             ) : (
               <div className="flex flex-col sm:flex-row items-start gap-5">
-
                 {/* Thumbnail */}
                 <a
                   href={video.videoUrl}
@@ -365,7 +377,6 @@ export default function ProgramDashboard() {
                   )}
 
                   <div className="flex flex-wrap gap-3 mt-4">
-
                     <a
                       href={video.videoUrl}
                       target="_blank"
@@ -378,9 +389,7 @@ export default function ProgramDashboard() {
 
                     <button
                       onClick={handleMarkComplete}
-                      disabled={
-                        completedToday || markingComplete
-                      }
+                      disabled={completedToday || markingComplete}
                       className={`inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border transition-colors disabled:cursor-not-allowed ${
                         completedToday
                           ? "bg-[#ECFDF3] border-[#ABEFC6] text-[#027A48]"
@@ -392,8 +401,8 @@ export default function ProgramDashboard() {
                       {completedToday
                         ? "Completed ✓"
                         : markingComplete
-                        ? "Saving..."
-                        : "Mark as Complete"}
+                          ? "Saving..."
+                          : "Mark as Complete"}
                     </button>
                   </div>
 
@@ -411,10 +420,7 @@ export default function ProgramDashboard() {
           <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-6">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 bg-[#F5F7FF] rounded-lg flex items-center justify-center">
-                <Calendar
-                  size={15}
-                  className="text-[#5B4FF7]"
-                />
+                <Calendar size={15} className="text-[#5B4FF7]" />
               </div>
 
               <span className="font-semibold text-[#1F2937] text-sm">
@@ -425,10 +431,7 @@ export default function ProgramDashboard() {
             {nextAppointment ? (
               <div className="bg-[#F5F7FF] rounded-2xl px-5 py-4 border border-[#E7EAF3]">
                 <p className="text-xs text-[#6B7280] flex items-center gap-1 mb-1">
-                  <Bell
-                    size={11}
-                    className="text-[#5B4FF7]"
-                  />
+                  <Bell size={11} className="text-[#5B4FF7]" />
                   Upcoming Check-in
                 </p>
 
@@ -436,22 +439,17 @@ export default function ProgramDashboard() {
                   {nextAppointment.doctorName ||
                     nextAppointment.doctor?.fullName ||
                     "Doctor"}{" "}
-                  —{" "}
-                  {formatAppointmentDate(
-                    nextAppointment.scheduledAt
-                  )}
+                  — {formatAppointmentDate(nextAppointment.scheduledAt)}
                 </p>
               </div>
             ) : (
               <div className="bg-[#F6F8FC] rounded-2xl px-5 py-4 text-center border border-[#E7EAF3]">
                 <p className="text-sm text-[#6B7280]">
-                  No upcoming appointments. Book a doctor
-                  consultation anytime.
+                  No upcoming appointments. Book a doctor consultation anytime.
                 </p>
               </div>
             )}
           </div>
-
         </div>
       </main>
 
