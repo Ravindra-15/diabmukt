@@ -274,11 +274,7 @@ const CustomerNavbar = () => {
                       after:h-[2px] after:w-0
                       after:bg-[#4F46E5] after:rounded-full
                       after:transition-all after:duration-300
-                      hover:after:w-full ${
-                        isActive
-                          ? "text-[#083B44] hover:text-[#4F46E5]"
-                          : "text-[#6B7280] hover:text-[#4F46E5]"
-                      }`
+                      hover:after:w-full text-[#6B7280] hover:text-[#4F46E5]`
                     }
                   >
                     {link.label}
@@ -383,8 +379,8 @@ const CustomerNavbar = () => {
                     className="
                           px-3 py-2 rounded-lg text-sm font-medium
                           text-gray-600
-                          hover:bg-teal-50
-                          hover:text-teal-700
+                          hover:bg-[#F6F8FC]
+                          hover:text-[#4F46E5]
                           transition-all duration-300
                         "
                   >
@@ -395,13 +391,7 @@ const CustomerNavbar = () => {
                     key={link.to}
                     to={link.to}
                     onClick={closeMobile}
-                    className={({ isActive }) =>
-                      `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        isActive
-                          ? "bg-teal-50 text-teal-700"
-                          : "text-gray-700 hover:bg-gray-50"
-                      }`
-                    }
+                    className="px-3 py-2 rounded-lg text-sm font-medium transition-colors text-gray-700 hover:bg-gray-50"
                   >
                     {link.label}
                   </NavLink>
@@ -427,7 +417,7 @@ const CustomerNavbar = () => {
                     className="
                       mt-1 px-4 py-2 rounded-full self-start
                       text-xs font-semibold text-white
-                      bg-[#4F46E5] hover:bg- [#4338CA]
+                      bg-[#4F46E5] hover:bg-[#4338CA]
                       transition-colors
                     "
                   >
