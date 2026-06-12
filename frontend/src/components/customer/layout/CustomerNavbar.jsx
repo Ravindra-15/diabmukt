@@ -6,8 +6,11 @@ import React, { useState, useContext, useEffect, useRef, useMemo } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 
 import { Menu, X, Bell } from "lucide-react";
+import toast from "react-hot-toast";
 
 import AuthContext from "../../../context/AuthContext";
+import { hasActiveProgramSubscription } from "../../../utils/subscriptionCheck";
+import { PROGRAM_ID } from "../../../utils/programConfig";
 
 // ============================================
 // 🔗 NAV LINK CONFIGS
@@ -52,6 +55,46 @@ const CustomerNavbar = () => {
     storedUser?.country &&
     storedUser?.city
   );
+
+  // 🎟️ subscription status — gates Home(→dashboard) + Add Progress links
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    if (!isLoggedIn) {
+      setIsSubscribed(false);
+      return;
+    }
+    (async () => {
+      const ok = await hasActiveProgramSubscription();
+      if (mounted) setIsSubscribed(ok);
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [isLoggedIn]);
+
+  // dashboard path for this program
+  const dashboardPath = `/programs/${PROGRAM_ID}/dashboard`;
+
+  // Home click — subscribed → dashboard; logged-in unsubscribed → toast; else landing
+  const handleHomeClick = (e) => {
+    if (!isLoggedIn) return; // logged out → let the link go to /home normally
+    e.preventDefault();
+    closeMobile();
+    if (isSubscribed) {
+      navigate(dashboardPath);
+    } else {
+      toast.error("Purchase a plan to unlock the video dashboard");
+    }
+  };
+
+  // Add Progress click — go to dashboard and auto-open the habit form
+  const handleAddProgressClick = (e) => {
+    e.preventDefault();
+    closeMobile();
+    navigate(`${dashboardPath}?openProgress=1`);
+  };
   // ============================================
   // 🚫 HIDE AUTH UI ON AUTH PAGES
   // ============================================
@@ -68,7 +111,18 @@ const CustomerNavbar = () => {
 
   const drawerRef = useRef(null);
 
-  const links = isLoggedIn && profileCompleted ? PRIVATE_LINKS : PUBLIC_LINKS;
+  // const links = isLoggedIn && profileCompleted ? PRIVATE_LINKS : PUBLIC_LINKS;
+  // base links by auth state
+  const baseLinks =
+    isLoggedIn && profileCompleted ? PRIVATE_LINKS : PUBLIC_LINKS;
+
+  // subscribed users get an extra "Add Progress" link
+  const links = isSubscribed
+    ? [
+        ...baseLinks,
+        { to: dashboardPath, label: "Add Progress", isAddProgress: true },
+      ]
+    : baseLinks;
 
   const closeMobile = () => setMobileOpen(false);
 
@@ -154,23 +208,51 @@ const CustomerNavbar = () => {
             {/* 🖥️ DESKTOP LINKS */}
             <div className="hidden lg:flex items-center justify-center gap-48 flex-1">
               {links.map((link) =>
-                link.to.includes("#") ? (
+                link.isAddProgress ? (
+                  <a
+                    key="add-progress"
+                    href={link.to}
+                    onClick={handleAddProgressClick}
+                    className="
+                          relative text-sm font-medium tracking-wide
+                          text-[#6B7280] hover:text-[#4F46E5]
+                          transition-all duration-300 hover:-translate-y-[1px]
+                          after:absolute after:left-0 after:-bottom-1
+                          after:h-[2px] after:w-0 after:bg-[#4F46E5] after:rounded-full
+                          after:transition-all after:duration-300 hover:after:w-full
+                        "
+                  >
+                    {link.label}
+                  </a>
+                ) : link.label === "Home" ? (
+                  <a
+                    key="home-desktop"
+                    href={link.to}
+                    onClick={handleHomeClick}
+                    className="
+                          relative text-sm font-medium tracking-wide
+                          text-[#6B7280] hover:text-[#4F46E5]
+                          transition-all duration-300 hover:-translate-y-[1px]
+                          after:absolute after:left-0 after:-bottom-1
+                          after:h-[2px] after:w-0 after:bg-[#4F46E5] after:rounded-full
+                          after:transition-all after:duration-300 hover:after:w-full
+                        "
+                  >
+                    {link.label}
+                  </a>
+                ) : link.to.includes("#") ? (
                   <a
                     key={link.to}
                     href={link.to}
                     onClick={handleProgramsClick}
                     className="
-                    relative text-sm font-medium tracking-wide
-                    text-[#6B7280] hover:text-[#4F46E5]
-                    transition-all duration-300
-                    hover:-translate-y-[1px]
-                    after:absolute after:left-0 after:-bottom-1
-                    after:h-[2px] after:w-0
-                    after:bg-[#4F46E5]
-                    after:rounded-full
-                    after:transition-all after:duration-300
-                    hover:after:w-full
-                  "
+                              relative text-sm font-medium tracking-wide
+                              text-[#6B7280] hover:text-[#4F46E5]
+                              transition-all duration-300 hover:-translate-y-[1px]
+                              after:absolute after:left-0 after:-bottom-1
+                              after:h-[2px] after:w-0 after:bg-[#4F46E5] after:rounded-full
+                              after:transition-all after:duration-300 hover:after:w-full
+                            "
                   >
                     {link.label}
                   </a>
@@ -268,12 +350,36 @@ const CustomerNavbar = () => {
           <div className="lg:hidden border-t border-[#E7EAF3] bg-white">
             <div className="px-4 py-3 flex flex-col gap-1">
               {links.map((link) =>
-                link.to.includes("#") ? (
+                link.isAddProgress ? (
+                  <a
+                    key="add-progress-m"
+                    href={link.to}
+                    onClick={handleAddProgressClick}
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F6F8FC] hover:text-[#4F46E5] transition-all duration-300"
+                  >
+                    {link.label}
+                  </a>
+                ) : link.label === "Home" ? (
+                  <a
+                    key="home-mobile"
+                    href={link.to}
+                    onClick={handleHomeClick}
+                    className="px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-[#F6F8FC] hover:text-[#4F46E5] transition-all duration-300"
+                  >
+                    {link.label}
+                  </a>
+                ) : link.to.includes("#") ? (
                   <a
                     key={link.to}
                     href={link.to}
-                    onClick={closeMobile}
-                    className="px-3 py-2 rounded-lg text-sm font-medium text-[#374151] hover:bg-[#F6F8FC]"
+                    onClick={handleProgramsClick}
+                    className="
+                          px-3 py-2 rounded-lg text-sm font-medium
+                          text-gray-600
+                          hover:bg-teal-50
+                          hover:text-teal-700
+                          transition-all duration-300
+                        "
                   >
                     {link.label}
                   </a>
@@ -286,7 +392,7 @@ const CustomerNavbar = () => {
                       `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                         isActive
                           ? "bg-teal-50 text-teal-700"
-                          : "text-[#374151] hover:bg-[#F6F8FC]"
+                          : "text-gray-700 hover:bg-gray-50"
                       }`
                     }
                   >
