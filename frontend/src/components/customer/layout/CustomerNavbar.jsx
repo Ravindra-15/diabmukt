@@ -57,17 +57,24 @@ const CustomerNavbar = () => {
   );
 
   // 🎟️ subscription status — gates Home(→dashboard) + Add Progress links
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  // seed from sessionStorage so links don't flicker on navigation
+  const [isSubscribed, setIsSubscribed] = useState(
+    () => sessionStorage.getItem("isSubscribed") === "1"
+  );
 
   useEffect(() => {
     let mounted = true;
     if (!isLoggedIn) {
       setIsSubscribed(false);
+      sessionStorage.removeItem("isSubscribed");
       return;
     }
     (async () => {
       const ok = await hasActiveProgramSubscription();
-      if (mounted) setIsSubscribed(ok);
+      if (mounted) {
+        setIsSubscribed(ok);
+        sessionStorage.setItem("isSubscribed", ok ? "1" : "0"); // cache for next navigation
+      }
     })();
     return () => {
       mounted = false;
@@ -206,7 +213,7 @@ const CustomerNavbar = () => {
             </Link>
 
             {/* 🖥️ DESKTOP LINKS */}
-            <div className="hidden lg:flex items-center justify-center gap-48 flex-1">
+            <div className="hidden lg:flex items-center justify-evenly flex-1">
               {links.map((link) =>
                 link.isAddProgress ? (
                   <a
@@ -214,7 +221,7 @@ const CustomerNavbar = () => {
                     href={link.to}
                     onClick={handleAddProgressClick}
                     className="
-                          relative text-sm font-medium tracking-wide
+                          relative text-sm font-medium tracking-wide whitespace-nowrap
                           text-[#6B7280] hover:text-[#4F46E5]
                           transition-all duration-300 hover:-translate-y-[1px]
                           after:absolute after:left-0 after:-bottom-1
@@ -230,7 +237,7 @@ const CustomerNavbar = () => {
                     href={link.to}
                     onClick={handleHomeClick}
                     className="
-                          relative text-sm font-medium tracking-wide
+                          relative text-sm font-medium tracking-wide whitespace-nowrap
                           text-[#6B7280] hover:text-[#4F46E5]
                           transition-all duration-300 hover:-translate-y-[1px]
                           after:absolute after:left-0 after:-bottom-1
@@ -246,7 +253,7 @@ const CustomerNavbar = () => {
                     href={link.to}
                     onClick={handleProgramsClick}
                     className="
-                              relative text-sm font-medium tracking-wide
+                              relative text-sm font-medium tracking-wide whitespace-nowrap
                               text-[#6B7280] hover:text-[#4F46E5]
                               transition-all duration-300 hover:-translate-y-[1px]
                               after:absolute after:left-0 after:-bottom-1
@@ -261,7 +268,7 @@ const CustomerNavbar = () => {
                     key={link.to}
                     to={link.to}
                     className={({ isActive }) =>
-                      `relative text-sm font-medium tracking-wide
+                      `relative text-sm font-medium tracking-wide whitespace-nowrap
                       transition-all duration-300 hover:-translate-y-[1px]
                       after:absolute after:left-0 after:-bottom-1
                       after:h-[2px] after:w-0
