@@ -259,25 +259,32 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
           </div>
         </div>
 
-        {/* 🎯 Right-side action */}
+        {/* 🎯 Right-side status only */}
         <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
           <StatusPill status={status} />
+          {awaitingLink && (
+            <p className="text-[10px] text-gray-400 text-right max-w-[140px]">
+              *Doctor will share the meeting link soon
+            </p>
+          )}
+        </div>
+      </div>
 
+      {/* ============================================ */}
+      {/* 🎬 ACTION ROW (footer — wraps on mobile)      */}
+      {/* ============================================ */}
+      {(canJoinVideo || canMarkComplete || canCancel) && (
+        <div className="px-4 sm:px-5 pb-4 flex flex-wrap gap-2">
           {canJoinVideo && (
             <a
               href={meetingLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-orange-500 hover:bg-orange-600 transition-colors shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#4F46E5] hover:bg-[#4338CA] transition-colors shadow-[0_4px_10px_rgba(79,70,229,0.25)]"
             >
               <Video size={12} />
               Join Video Call
             </a>
-          )}
-          {awaitingLink && (
-            <p className="text-[10px] text-gray-400 text-right max-w-[140px]">
-              *Doctor will share the meeting link soon
-            </p>
           )}
 
           {canMarkComplete && (
@@ -285,7 +292,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               type="button"
               onClick={handleComplete}
               disabled={completing}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-emerald-500 hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {completing ? (
                 <Loader2 size={12} className="animate-spin" />
@@ -301,7 +308,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               type="button"
               onClick={() => setRescheduleModalOpen(true)}
               disabled={rescheduling}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-[#4F46E5] border border-[#4F46E5]/30 hover:bg-[#EEF2FF] transition-colors disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-[#4F46E5] border border-[#4F46E5]/30 hover:bg-[#EEF2FF] transition-colors disabled:opacity-50"
             >
               {rescheduling ? (
                 <Loader2 size={12} className="animate-spin" />
@@ -317,7 +324,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
               type="button"
               onClick={openCancelModal}
               disabled={cancelling}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-red-600 border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-red-600 border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
             >
               {cancelling ? (
                 <Loader2 size={12} className="animate-spin" />
@@ -328,7 +335,7 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated }) => {
             </button>
           )}
         </div>
-      </div>
+      )}
 
       {/* ============================================ */}
       {/* 🔽 EXPAND TOGGLE                              */}
