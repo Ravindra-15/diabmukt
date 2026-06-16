@@ -135,7 +135,7 @@ const HeroSearch = ({
     {/* ============================================ */}
     {/* 🏷️ SPECIALTY CHIPS */}
     {/* ============================================ */}
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
       {SPECIALTIES.map((item) => {
         const isActive = specialty === item;
 
@@ -159,10 +159,10 @@ const HeroSearch = ({
           </button>
         );
       })}
-    </div>
+    </div> */}
 
     {/* 🔄 Active filter */}
-    {specialty && (
+    {/* {specialty && (
       <p className="text-sm text-[#6B7280]">
         Filtering by{" "}
         <span className="font-semibold text-[#5B4FF7]">
@@ -177,7 +177,7 @@ const HeroSearch = ({
           clear
         </button>
       </p>
-    )}
+    )} */}
   </div>
 );
 };
