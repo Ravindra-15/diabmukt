@@ -4,7 +4,18 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
-import { Play, Check, Plus, Bell, Calendar, ChevronUp, Stethoscope, Lock, Gift, Video } from "lucide-react";
+import {
+  Play,
+  Check,
+  Plus,
+  Bell,
+  Calendar,
+  ChevronUp,
+  Stethoscope,
+  Lock,
+  Gift,
+  Video,
+} from "lucide-react";
 import HabitTrackerForm from "./components/HabitTrackerForm";
 import toast from "react-hot-toast";
 
@@ -110,7 +121,7 @@ const formatToday = () =>
     day: "2-digit",
   });
 
-  // 🕒 Returns "Good Morning/Afternoon/Evening" based on current hour
+// 🕒 Returns "Good Morning/Afternoon/Evening" based on current hour
 const getGreeting = () => {
   const hour = new Date().getHours();
   if (hour < 12) return "Good Morning";
@@ -146,9 +157,11 @@ const formatAppointmentDate = (date) => {
 const entitlementFromSubscription = (sub) => {
   if (!sub || !sub.isActive) return 0;
   const weekMatch = String(sub.tenure || "").match(/(\d+)\s*week/i);
-  if (weekMatch) return Math.min(4, Math.floor(parseInt(weekMatch[1], 10) / 12));
+  if (weekMatch)
+    return Math.min(4, Math.floor(parseInt(weekMatch[1], 10) / 12));
   const monthMatch = String(sub.tenure || "").match(/(\d+)\s*month/i);
-  if (monthMatch) return Math.min(4, Math.floor(parseInt(monthMatch[1], 10) / 3));
+  if (monthMatch)
+    return Math.min(4, Math.floor(parseInt(monthMatch[1], 10) / 3));
   return 0;
 };
 
@@ -179,7 +192,10 @@ export default function ProgramDashboard() {
       setSearchParams(searchParams, { replace: true });
       // wait for expand animation to start, then scroll to the form
       const t = setTimeout(() => {
-        progressRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        progressRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }, 250);
       return () => clearTimeout(t);
     }
@@ -263,14 +279,21 @@ export default function ProgramDashboard() {
     };
   }, []);
 
- // 📥 Load the logged-in user's name + plan free-consult credits
+  // 📥 Load the logged-in user's name + plan free-consult credits
   useEffect(() => {
     let mounted = true;
     (async () => {
       try {
         const profile = await fetchMyProfile();
-        console.log("map:", profile?.planFreeConsults, "id:", id, "credits:", profile?.planFreeConsults?.[id]);
-       if (mounted) {
+        console.log(
+          "map:",
+          profile?.planFreeConsults,
+          "id:",
+          id,
+          "credits:",
+          profile?.planFreeConsults?.[id],
+        );
+        if (mounted) {
           setUserName(profile?.fullName || profile?.nickName || "");
           // read only THIS program's plan credits from the per-program map
           setPlanCreditsLeft(profile?.planFreeConsults?.[id] || 0);
@@ -340,7 +363,10 @@ export default function ProgramDashboard() {
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5">
           {/* Greeting Card */}
-          <div ref={topRef} className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] px-6 py-7 sm:px-8">
+          <div
+            ref={topRef}
+            className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] px-6 py-7 sm:px-8"
+          >
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
               <div className="flex-1 min-w-0">
                 <p className="text-[#5B4FF7] font-semibold text-sm mb-1">
@@ -349,11 +375,9 @@ export default function ProgramDashboard() {
 
                 <h2 className="text-2xl sm:text-3xl font-bold text-[#1F2937] leading-tight">
                   {getGreeting()},{" "}
-                  <span className="text-[#5B4FF7]">
-                    {userName || "there"}
-                  </span>
+                  <span className="text-[#5B4FF7]">{userName || "there"}</span>
                 </h2>
-                
+
                 <p className="text-[#9CA3AF] text-sm mt-1">
                   Let's track your wellness journey for today
                 </p>
@@ -362,14 +386,12 @@ export default function ProgramDashboard() {
                   <ProgressRing />
                 </div>
 
-               <button
+                <button
                   onClick={() => navigate(`/programs/${id}/progress-report`)}
                   className="mt-5 bg-[#F6F8FC] border border-[#E7EAF3] rounded-2xl px-4 py-3 inline-flex items-center gap-4 w-full sm:w-auto text-left hover:border-[#5B4FF7] transition-colors"
                 >
                   <div>
-                    <p className="text-xs text-[#9CA3AF] mb-0.5">
-                      Today
-                    </p>
+                    <p className="text-xs text-[#9CA3AF] mb-0.5">Today</p>
                     <p className="font-bold text-[#1F2937] text-sm leading-tight">
                       {formatToday()}
                     </p>
@@ -406,15 +428,20 @@ export default function ProgramDashboard() {
           <div
             ref={progressRef}
             className={`grid transition-all duration-300 ease-in-out ${
-              showProgress ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              showProgress
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0"
             }`}
           >
-           <div className="overflow-hidden">
+            <div className="overflow-hidden">
               <div className="pt-1 pb-1">
                 <p className="text-sm font-bold text-gray-800 mb-3 px-1">
                   Log Today's Progress
                 </p>
-                <HabitTrackerForm programId={id} onSaved={handleProgressSaved} />
+                <HabitTrackerForm
+                  programId={id}
+                  onSaved={handleProgressSaved}
+                />
               </div>
             </div>
           </div>
@@ -422,114 +449,161 @@ export default function ProgramDashboard() {
           {/* ══════════════════════════════════════════════════ */}
           {/* 🎬 VIDEO CARD                                       */}
 
-          {/* Video Card */}
-          <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-5">
-            {loadingVideo ? (
-              <p className="py-10 text-center text-sm text-[#9CA3AF]">
-                Loading video...
-              </p>
-            ) : !video ? (
-              <div className="py-10 text-center">
-                <p className="text-sm text-[#6B7280] mb-2">
-                  No videos available yet.
-                </p>
+          {/* ══════════════════════════════════════════════════ */}
+          {/* 🎬 VIDEO CARD + DAILY MOTIVATION                    */}
+          {/* ══════════════════════════════════════════════════ */}
+          {(() => {
+            // Opens today's video AND starts the 24hr countdown (advances the queue).
+            // Visiting the video IS the trigger — no separate "Mark Complete".
+            const startVideo = () => {
+              if (!video?.videoUrl) return;
+              // open synchronously so the browser doesn't block the popup
+              window.open(video.videoUrl, "_blank", "noopener,noreferrer");
+              if (completedToday || markingComplete) return;
+              setMarkingComplete(true);
+              markVideoComplete(video._id)
+                .then(() => loadVideo())
+                .catch(() => {})
+                .finally(() => setMarkingComplete(false));
+            };
 
-                <p className="text-xs text-[#9CA3AF]">
-                  Check back soon — new content is uploaded regularly.
-                </p>
-              </div>
-            ) : (
-              <div className="flex flex-col sm:flex-row items-start gap-5">
-                {/* Thumbnail */}
-                <a
-                  href={video.videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative w-full sm:w-52 h-32 rounded-2xl overflow-hidden shrink-0 group"
-                >
-                  <img
-                    src={buildThumbnailSrc(video.thumbnailUrl)}
-                    alt={video.title}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src =
-                        "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80";
-                    }}
-                  />
-
-                  <div className="absolute inset-0 bg-black/25 group-hover:bg-black/40 flex items-center justify-center transition-colors">
-                    <div className="w-10 h-10 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <Play
-                        size={18}
-                        className="text-white ml-0.5"
-                        fill="white"
-                      />
+            return (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
+                {/* ── LEFT: Video Card ───────────────────────── */}
+                <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-5 sm:p-6 flex flex-col">
+                  {loadingVideo ? (
+                    <div className="flex-1 flex items-center justify-center py-10">
+                      <p className="text-sm text-[#9CA3AF]">Loading video...</p>
                     </div>
-                  </div>
-                </a>
+                  ) : !video ? (
+                    <div className="flex-1 flex flex-col items-center justify-center py-10 text-center">
+                      <p className="text-sm text-[#6B7280] mb-2">
+                        No videos available yet.
+                      </p>
+                      <p className="text-xs text-[#9CA3AF]">
+                        Check back soon — new content is uploaded regularly.
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {/* Thumbnail (click = start) */}
+                      <button
+                        type="button"
+                        onClick={startVideo}
+                        className="relative w-full h-48 sm:h-56 rounded-2xl overflow-hidden group"
+                      >
+                        <img
+                          src={buildThumbnailSrc(video.thumbnailUrl)}
+                          alt={video.title}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80";
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-black/25 group-hover:bg-black/40 flex items-center justify-center transition-colors">
+                          <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                            <Play
+                              size={20}
+                              className="text-white ml-0.5"
+                              fill="white"
+                            />
+                          </div>
+                        </div>
+                      </button>
 
-                {/* Video Info */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-[#5B4FF7] font-semibold text-sm">
-                    {programTitle}
+                      {/* Info + CTA */}
+                      <div className="mt-4 flex-1 flex flex-col">
+                        <p className="text-[#5B4FF7] font-semibold text-sm">
+                          {programTitle}
+                          {videoData?.isScheduled && (
+                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-[#F5F7FF] text-[#5B4FF7] text-[10px] font-bold">
+                              Today's Special
+                            </span>
+                          )}
+                        </p>
 
-                    {videoData?.isScheduled && (
-                      <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-[#F5F7FF] text-[#5B4FF7] text-[10px] font-bold">
-                        Today's Special
-                      </span>
-                    )}
-                  </p>
+                        <p className="text-[#1F2937] font-semibold text-base mt-0.5 leading-snug">
+                          {video.title}
+                        </p>
 
-                  <p className="text-[#1F2937] font-semibold text-base mt-0.5 leading-snug">
-                    {video.title}
-                  </p>
+                        {video.duration && (
+                          <p className="text-xs text-[#9CA3AF] mt-1">
+                            {video.duration}
+                          </p>
+                        )}
 
-                  {video.duration && (
-                    <p className="text-xs text-[#9CA3AF] mt-1">
-                      {video.duration}
-                    </p>
-                  )}
+                        <div className="mt-auto pt-4">
+                          <button
+                            type="button"
+                            onClick={startVideo}
+                            disabled={markingComplete}
+                            className={`inline-flex items-center gap-2 text-sm font-semibold px-8 py-2.5 rounded-full transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70 ${
+                              completedToday
+                                ? "bg-[#ECFDF3] border border-[#ABEFC6] text-[#027A48]"
+                                : "bg-[#5B4FF7] hover:bg-[#4338CA] text-white shadow-[0_8px_20px_rgba(91,79,247,0.22)]"
+                            }`}
+                          >
+                            <Play
+                              size={13}
+                              fill={completedToday ? "#027A48" : "white"}
+                            />
+                            {markingComplete
+                              ? "Opening..."
+                              : completedToday
+                                ? "Watch Again"
+                                : "Start"}
+                          </button>
 
-                  <div className="flex flex-wrap gap-3 mt-4">
-                    <a
-                      href={video.videoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-[#5B4FF7] hover:bg-[#4338CA] text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-[0_8px_20px_rgba(91,79,247,0.22)] transition-all duration-200"
-                    >
-                      <Play size={13} fill="white" />
-                      Play Video
-                    </a>
-
-                    <button
-                      onClick={handleMarkComplete}
-                      disabled={completedToday || markingComplete}
-                      className={`inline-flex items-center gap-2 text-sm font-semibold px-6 py-2.5 rounded-full border transition-colors disabled:cursor-not-allowed ${
-                        completedToday
-                          ? "bg-[#ECFDF3] border-[#ABEFC6] text-[#027A48]"
-                          : "border-[#D9DDF0] text-[#6B7280] hover:border-[#5B4FF7] hover:text-[#5B4FF7]"
-                      }`}
-                    >
-                      <Check size={13} />
-
-                      {completedToday
-                        ? "Completed ✓"
-                        : markingComplete
-                          ? "Saving..."
-                          : "Mark as Complete"}
-                    </button>
-                  </div>
-
-                  {completedToday && (
-                    <p className="text-xs text-[#9CA3AF] mt-3">
-                      Great job! Your next video unlocks tomorrow.
-                    </p>
+                          {completedToday && (
+                            <p className="text-xs text-[#9CA3AF] mt-3">
+                              Great job! Your next video unlocks tomorrow.
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
-              </div>
-            )}
-          </div>
 
+                {/* ── RIGHT: Daily Motivation (desktop only) ──── */}
+                <div className="hidden lg:flex flex-col justify-between relative overflow-hidden rounded-[28px] p-8 text-white bg-gradient-to-br from-[#5B4FF7] to-[#4338CA] shadow-[0_10px_30px_rgba(91,79,247,0.25)]">
+                  {/* decorative circles */}
+                  <div className="absolute -top-12 -right-10 w-44 h-44 rounded-full bg-white/10" />
+                  <div className="absolute -bottom-14 -left-10 w-48 h-48 rounded-full bg-white/5" />
+
+                  <div className="relative">
+                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide uppercase bg-white/15 px-3 py-1 rounded-full">
+                      ✨ Daily Motivation
+                    </span>
+
+                    <h3 className="text-2xl font-bold mt-5 leading-snug">
+                      Small steps, big change.
+                    </h3>
+
+                    <p className="text-white/85 text-sm mt-3 leading-relaxed">
+                      {
+                        [
+                          "Rest fuels progress — a calm mind today sets up a strong week.",
+                          "Fresh week, fresh start. One small habit today compounds into big change.",
+                          "Consistency beats intensity — just show up today, even for a few minutes.",
+                          "Halfway through the week. Keep the momentum going with today's session.",
+                          "Progress isn't always visible, but every day counts. Stay with it.",
+                          "Finish the week strong — your future self will thank you.",
+                          "A little movement today keeps your streak alive. You've got this.",
+                        ][new Date().getDay()]
+                      }
+                    </p>
+                  </div>
+
+                  <div className="relative mt-6 flex items-center gap-2 text-sm font-semibold text-white/90">
+                  <span className="text-lg leading-none">←</span>
+                    Today's session is waiting
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
           {/* 📅 UPCOMING APPOINTMENT (any booking) */}
           {/* <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-6">
             <div className="flex items-center gap-2 mb-4">
@@ -634,7 +708,7 @@ export default function ProgramDashboard() {
                     }
 
                     // A free-consult appointment occupies this slot → show its state (disabled)
-                   if (appt) {
+                    if (appt) {
                       const isCancelled = appt.status === "cancelled";
                       const isCompleted = appt.status === "completed";
                       // show Join only for active (not cancelled/completed) bookings with a sent link
@@ -644,10 +718,31 @@ export default function ProgramDashboard() {
                         !!appt.meetingLink &&
                         !!appt.meetingLinkSentAt;
                       const tone = isCancelled
-                        ? { border: "border-gray-200", bg: "bg-gray-50", icon: "bg-gray-100", iconColor: "text-gray-400", badge: "text-gray-500 bg-gray-100", label: "Cancelled" }
+                        ? {
+                            border: "border-gray-200",
+                            bg: "bg-gray-50",
+                            icon: "bg-gray-100",
+                            iconColor: "text-gray-400",
+                            badge: "text-gray-500 bg-gray-100",
+                            label: "Cancelled",
+                          }
                         : isCompleted
-                        ? { border: "border-emerald-200", bg: "bg-emerald-50/50", icon: "bg-emerald-100", iconColor: "text-emerald-600", badge: "text-emerald-700 bg-emerald-100", label: "Completed" }
-                        : { border: "border-emerald-200", bg: "bg-emerald-50/50", icon: "bg-emerald-100", iconColor: "text-emerald-600", badge: "text-emerald-700 bg-emerald-100", label: "Booked" };
+                          ? {
+                              border: "border-emerald-200",
+                              bg: "bg-emerald-50/50",
+                              icon: "bg-emerald-100",
+                              iconColor: "text-emerald-600",
+                              badge: "text-emerald-700 bg-emerald-100",
+                              label: "Completed",
+                            }
+                          : {
+                              border: "border-emerald-200",
+                              bg: "bg-emerald-50/50",
+                              icon: "bg-emerald-100",
+                              iconColor: "text-emerald-600",
+                              badge: "text-emerald-700 bg-emerald-100",
+                              label: "Booked",
+                            };
 
                       return (
                         <div
@@ -655,18 +750,26 @@ export default function ProgramDashboard() {
                           className={`${cardBase} ${tone.border} ${tone.bg} ${isCancelled ? "opacity-80" : ""}`}
                         >
                           <div className="flex items-center gap-3">
-                            <div className={`w-10 h-10 rounded-xl ${tone.icon} flex items-center justify-center shrink-0`}>
+                            <div
+                              className={`w-10 h-10 rounded-xl ${tone.icon} flex items-center justify-center shrink-0`}
+                            >
                               <Calendar size={16} className={tone.iconColor} />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <p className={`text-sm font-bold truncate ${isCancelled ? "text-gray-500 line-through" : "text-gray-800"}`}>
-                                {appt.doctorName || appt.doctor?.fullName || "Doctor"}
+                              <p
+                                className={`text-sm font-bold truncate ${isCancelled ? "text-gray-500 line-through" : "text-gray-800"}`}
+                              >
+                                {appt.doctorName ||
+                                  appt.doctor?.fullName ||
+                                  "Doctor"}
                               </p>
                               <p className="text-xs text-gray-500 mt-0.5">
                                 {formatAppointmentDate(appt.scheduledAt)}
                               </p>
                             </div>
-                            <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${tone.badge}`}>
+                            <span
+                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0 ${tone.badge}`}
+                            >
                               {tone.label}
                             </span>
                           </div>
@@ -676,7 +779,10 @@ export default function ProgramDashboard() {
                           {canJoin && (
                             <div className="mt-3 pt-3 border-t border-emerald-100 space-y-2">
                               <div className="flex items-center gap-1.5 text-[11px] text-gray-500">
-                                <Video size={12} className="text-[#5B4FF7] shrink-0" />
+                                <Video
+                                  size={12}
+                                  className="text-[#5B4FF7] shrink-0"
+                                />
                                 <a
                                   href={appt.meetingLink}
                                   target="_blank"
@@ -713,7 +819,10 @@ export default function ProgramDashboard() {
                         >
                           <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-[#EEF2FF] flex items-center justify-center shrink-0">
-                              <Stethoscope size={16} className="text-[#5B4FF7]" />
+                              <Stethoscope
+                                size={16}
+                                className="text-[#5B4FF7]"
+                              />
                             </div>
                             <div className="min-w-0 flex-1">
                               <p className="text-sm font-bold text-[#1F2937]">
