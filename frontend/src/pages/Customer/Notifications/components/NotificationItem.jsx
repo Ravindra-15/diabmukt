@@ -2,7 +2,9 @@
 // Single notification row — icon-coded by type, shows time-ago, dimmed when read
 // Used inside Notifications page list
 
-import { CheckCircle2, CreditCard, AlertCircle, Bell, Calendar, Sparkles } from "lucide-react";
+import { CheckCircle2, CreditCard, AlertCircle, Bell, Calendar, Sparkles, Clock } from "lucide-react";
+
+import { PROGRAM_ID } from "../../../../utils/programConfig";
 
 const typeMeta = {
   appointment_confirmed: {
@@ -34,6 +36,11 @@ const typeMeta = {
     icon: Sparkles,
     bg: "bg-purple-50",
     color: "text-purple-500",
+  },
+  plan_expiring: {
+    icon: Clock,
+    bg: "bg-orange-50",
+    color: "text-orange-500",
   },
   general: {
     icon: Bell,
@@ -82,6 +89,12 @@ export default function NotificationItem({ notification, onClick }) {
           </span>
         </div>
         <p className="text-xs text-[#6B7280] mt-1 leading-relaxed">{notification.body}</p>
+        {notification.type === "plan_expiring" &&
+          notification?.metadata?.programId === PROGRAM_ID && (
+            <span className="inline-block text-xs font-semibold text-[#4F46E5] mt-1.5 hover:underline">
+              Click here to renew your program →
+            </span>
+          )}
       </div>
     </button>
   );
