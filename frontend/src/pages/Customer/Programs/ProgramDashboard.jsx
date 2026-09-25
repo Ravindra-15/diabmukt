@@ -21,6 +21,7 @@ import { listMyAppointments } from "../../../services/customerAppointmentService
 import { fetchMyProfile } from "../../../services/customerProfileService";
 import { fetchMySubscription } from "../../../services/customerBillingService";
 import { fetchMyFreeConsultCards } from "../../../services/customerFreeConsultService";
+import { getViewerTimezone, getZonedDateStr } from "../../../utils/time";
 
 const programTitles = {
   yogat20: "Yoga T20",
@@ -123,14 +124,22 @@ const formatAppointmentDate = (date) => {
   if (!date) return "";
 
   const d = new Date(date);
-  const now = new Date();
-
-  const diffDays = Math.round((d - now) / (1000 * 60 * 60 * 24));
-
+  const zone = getViewerTimezone();
   const timeStr = d.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: zone, // 🌍 viewer's own zone, not the browser's bare default
   });
+
+  // 🌍 "Today"/"Tomorrow" compared by real CALENDAR DATE in the viewer's
+  // own zone, not raw millisecond division (which can misjudge which
+  // calendar day an appointment falls on near midnight).
+  const todayStr = getZonedDateStr(new Date(), zone);
+  const targetStr = getZonedDateStr(d, zone);
+  const diffDays = Math.round(
+    (new Date(`${targetStr}T00:00:00.000Z`) - new Date(`${todayStr}T00:00:00.000Z`)) /
+      (1000 * 60 * 60 * 24)
+  );
 
   if (diffDays === 0) return `Today, ${timeStr}`;
   if (diffDays === 1) return `Tomorrow, ${timeStr}`;
@@ -139,13 +148,18 @@ const formatAppointmentDate = (date) => {
   return `${d.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
+    timeZone: zone,
   })}, ${timeStr}`;
 };
 
 // 📅 Short date for card validity (e.g. "Jul 20")
 const formatShortDate = (d) =>
   d
-    ? new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" })
+    ? new Date(d).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: getViewerTimezone(), // 🌍 viewer's own zone
+      })
     : "";
 
 // 🎁 Free consultations entitled by plan tenure.
