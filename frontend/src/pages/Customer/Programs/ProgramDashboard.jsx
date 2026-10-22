@@ -2,7 +2,7 @@
 // Single daily video stream (no yoga-type queues) + 24hr cooldown
 // Uses real clinical videos from admin CMS + real upcoming appointment
 
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Play, Check, Plus, Bell, Calendar, ChevronUp, Stethoscope, Lock, Gift, Video, Clock, X } from "lucide-react";
 import HabitTrackerForm from "./components/HabitTrackerForm";
@@ -14,7 +14,6 @@ import CustomerFooter from "../../../components/customer/layout/CustomerFooter";
 import {
   getCurrentVideo,
   markVideoComplete,
-  buildThumbnailSrc,
 } from "../../../services/clinicalVideoService";
 
 import { listMyAppointments } from "../../../services/customerAppointmentService";
@@ -175,6 +174,37 @@ const entitlementFromSubscription = (sub) => {
   return 0;
 };
 
+// 🧘 The 3 Diabmukt video queues (same backend categories as YogaT20;
+// the third one is presented as "Yoga for Diabetes" for Diabmukt)
+const YOGA_TYPES = {
+  normal_yoga: { id: "normal_yoga", label: "Normal Yoga" },
+  chair_yoga: { id: "chair_yoga", label: "Chair Yoga" },
+  high_intensity: { id: "high_intensity", label: "Yoga for Diabetes" },
+};
+
+// 🧘 The 3 cards shown on the dashboard. Clicking "Start" plays that queue's
+// current video on YouTube and advances the queue (starts the 24hr countdown).
+const YOGA_CARDS = [
+  {
+    id: "normal_yoga",
+    label: "Your daily practice",
+    bold: "Normal Yoga",
+    image: "/images/normalyogaimg.png",
+  },
+  {
+    id: "chair_yoga",
+    label: "Tired today ? Do some",
+    bold: "Chair Yoga",
+    image: "/images/chairyogaimg.png",
+  },
+  {
+    id: "high_intensity",
+    label: "Made for better sugar control",
+    bold: "Yoga for Diabetes",
+    image: "/images/highintesityyogaimg.png",
+  },
+];
+
 export default function ProgramDashboard() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -211,9 +241,9 @@ export default function ProgramDashboard() {
     }
   }, [searchParams, setSearchParams]);
 
-  const [videoData, setVideoData] = useState(null);
-  const [loadingVideo, setLoadingVideo] = useState(true);
-  const [markingComplete, setMarkingComplete] = useState(false);
+  const [videosByType, setVideosByType] = useState({}); // { normal_yoga: { video, completedToday }, ... }
+  const [loadingVideos, setLoadingVideos] = useState(true);
+  const [startingType, setStartingType] = useState(null); // card currently opening
   const [nextAppointment, setNextAppointment] = useState(null);
   const [userName, setUserName] = useState(""); // logged-in user's display name
 
@@ -248,26 +278,31 @@ export default function ProgramDashboard() {
     if (expiryTimerRef.current) clearTimeout(expiryTimerRef.current);
     setExpiryPopupOpen(false);
   };
-  // ─────────────────────────────────────────────
-  // Load Today's Video
-  // ─────────────────────────────────────────────
-  const loadVideo = useCallback(async () => {
-    setLoadingVideo(true);
-
-    try {
-      const data = await getCurrentVideo(id);
-      setVideoData(data);
-    } catch (err) {
-      console.error("Failed to load video:", err);
-      setVideoData(null);
-    } finally {
-      setLoadingVideo(false);
-    }
-  }, [id]);
-
+  // 📥 Load the current video for all three queues at once.
+  // Pre-fetching keeps window.open() synchronous on click (no popup blocking).
   useEffect(() => {
-    loadVideo();
-  }, [loadVideo]);
+    let mounted = true;
+    (async () => {
+      setLoadingVideos(true);
+      try {
+        const types = Object.keys(YOGA_TYPES);
+        const results = await Promise.all(
+          types.map((t) => getCurrentVideo(id, t).catch(() => null)),
+        );
+        if (!mounted) return;
+        const map = {};
+        types.forEach((t, i) => {
+          map[t] = results[i];
+        });
+        setVideosByType(map);
+      } finally {
+        if (mounted) setLoadingVideos(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
 
   // ─────────────────────────────────────────────
   // Load Next Appointment
@@ -440,30 +475,38 @@ setUpcomingAppointments(planAppts);
     };
   }, [id]);
 
-  // ─────────────────────────────────────────────
-  // Mark Complete
-  // ─────────────────────────────────────────────
-  const handleMarkComplete = async () => {
-    if (!videoData?.video || videoData.completedToday || markingComplete)
+  // ▶️ Start a queue: open the YouTube video AND begin the 24hr countdown.
+  // Visiting the video IS the trigger — no separate "Mark Complete" needed.
+  const handleStart = (type) => {
+    const data = videosByType[type];
+    if (!data?.video?.videoUrl) {
+      toast.error(`No ${YOGA_TYPES[type].label} video available yet.`);
       return;
-
-    setMarkingComplete(true);
-
-    try {
-      await markVideoComplete(videoData.video._id);
-
-      toast.success("Video marked as complete! See you tomorrow.");
-
-      await loadVideo();
-    } catch (err) {
-      toast.error(err?.response?.data?.message || "Failed to mark complete");
-    } finally {
-      setMarkingComplete(false);
     }
-  };
 
-  const video = videoData?.video;
-  const completedToday = videoData?.completedToday;
+    // Open synchronously (inside the click handler) so it isn't popup-blocked.
+    window.open(data.video.videoUrl, "_blank", "noopener,noreferrer");
+
+    // Already watched today → just reopened it, nothing to advance.
+    if (data.completedToday) return;
+
+    setStartingType(type);
+    (async () => {
+      try {
+        await markVideoComplete(data.video._id);
+        const refreshed = await getCurrentVideo(id, type).catch(() => ({
+          ...data,
+          completedToday: true,
+        }));
+        setVideosByType((prev) => ({ ...prev, [type]: refreshed }));
+      } catch (err) {
+        // Soft fail — the user still got the video open.
+        console.error("Failed to start countdown:", err);
+      } finally {
+        setStartingType(null);
+      }
+    })();
+  };
 
   return (
     <div className="min-h-screen bg-[#F6F8FC] flex flex-col">
@@ -653,163 +696,96 @@ setUpcomingAppointments(planAppts);
           </div>
 
           {/* ══════════════════════════════════════════════════ */}
-          {/* 🎬 VIDEO CARD                                       */}
-
+          {/* 🧘 CHOOSE YOUR PRACTICE — 3 CARDS                  */}
           {/* ══════════════════════════════════════════════════ */}
-          {/* 🎬 VIDEO CARD + DAILY MOTIVATION                    */}
-          {/* ══════════════════════════════════════════════════ */}
-          {(() => {
-            // Opens today's video AND starts the 24hr countdown (advances the queue).
-            // Visiting the video IS the trigger — no separate "Mark Complete".
-            const startVideo = () => {
-              if (!video?.videoUrl) return;
-              // open synchronously so the browser doesn't block the popup
-              window.open(video.videoUrl, "_blank", "noopener,noreferrer");
-              if (completedToday || markingComplete) return;
-              setMarkingComplete(true);
-              markVideoComplete(video._id)
-                .then(() => loadVideo())
-                .catch(() => {})
-                .finally(() => setMarkingComplete(false));
-            };
+          <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] overflow-hidden">
+            <div className="px-6 pt-6">
+              <p className="text-[#1F2937] font-bold text-base">
+                Choose your practice for today
+              </p>
+              <p className="text-[#9CA3AF] text-xs mt-0.5">
+                Pick a style and hit Start — your video opens and the next one
+                unlocks tomorrow.
+              </p>
+            </div>
 
-            return (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
-                {/* ── LEFT: Video Card ───────────────────────── */}
-                <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-5 sm:p-6 flex flex-col">
-                  {loadingVideo ? (
-                    <div className="flex-1 flex items-center justify-center py-10">
-                      <p className="text-sm text-[#9CA3AF]">Loading video...</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 sm:divide-x sm:divide-[#D9DDF0]">
+              {YOGA_CARDS.map((card) => {
+                const data = videosByType[card.id];
+                const video = data?.video;
+                const completedToday = data?.completedToday;
+                const busy = startingType === card.id;
+
+                let btnLabel = "Start";
+                if (loadingVideos) btnLabel = "Loading...";
+                else if (!video) btnLabel = "Coming soon";
+                else if (busy) btnLabel = "Opening...";
+                else if (completedToday) btnLabel = "Watch Again";
+
+                const disabled = loadingVideos || !video || busy;
+
+                return (
+                  <div
+                    key={card.id}
+                    className="flex flex-col items-center text-center px-4 sm:px-8 py-8 sm:py-10"
+                  >
+                    {/* Illustration */}
+                    <div className="w-full h-32 sm:h-72 mb-5">
+                      <img
+                        src={card.image}
+                        alt={card.bold}
+                        className="w-full h-full object-contain mix-blend-multiply"
+                      />
                     </div>
-                  ) : !video ? (
-                    <div className="flex-1 flex flex-col items-center justify-center py-10 text-center">
-                      <p className="text-sm text-[#6B7280] mb-2">
-                        No videos available yet.
-                      </p>
-                      <p className="text-xs text-[#9CA3AF]">
-                        Check back soon — new content is uploaded regularly.
-                      </p>
-                    </div>
-                  ) : (
-                    <>
-                      {/* Thumbnail (click = start) */}
-                      <button
-                        type="button"
-                        onClick={startVideo}
-                        className="relative w-full h-48 sm:h-56 rounded-2xl overflow-hidden group"
-                      >
-                        <img
-                          src={buildThumbnailSrc(video.thumbnailUrl)}
-                          alt={video.title}
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            e.currentTarget.src =
-                              "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80";
-                          }}
-                        />
-                        <div className="absolute inset-0 bg-black/25 group-hover:bg-black/40 flex items-center justify-center transition-colors">
-                          <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                            <Play
-                              size={20}
-                              className="text-white ml-0.5"
-                              fill="white"
-                            />
-                          </div>
-                        </div>
-                      </button>
 
-                      {/* Info + CTA */}
-                      <div className="mt-4 flex-1 flex flex-col">
-                        <p className="text-[#5B4FF7] font-semibold text-sm">
-                          {programTitle}
-                          {videoData?.isScheduled && (
-                            <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-md bg-[#F5F7FF] text-[#5B4FF7] text-[10px] font-bold">
-                              Today's Special
-                            </span>
-                          )}
-                        </p>
-
-                        <p className="text-[#1F2937] font-semibold text-base mt-0.5 leading-snug">
-                          {video.title}
-                        </p>
-
-                        {video.duration && (
-                          <p className="text-xs text-[#9CA3AF] mt-1">
-                            {video.duration}
-                          </p>
-                        )}
-
-                        <div className="mt-auto pt-4">
-                          <button
-                            type="button"
-                            onClick={startVideo}
-                            disabled={markingComplete}
-                            className={`inline-flex items-center gap-2 text-sm font-semibold px-8 py-2.5 rounded-full transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-70 ${
-                              completedToday
-                                ? "bg-[#ECFDF3] border border-[#ABEFC6] text-[#027A48]"
-                                : "bg-[#5B4FF7] hover:bg-[#4338CA] text-white shadow-[0_8px_20px_rgba(91,79,247,0.22)]"
-                            }`}
-                          >
-                            <Play
-                              size={13}
-                              fill={completedToday ? "#027A48" : "white"}
-                            />
-                            {markingComplete
-                              ? "Opening..."
-                              : completedToday
-                                ? "Watch Again"
-                                : "Start"}
-                          </button>
-
-                          {completedToday && (
-                            <p className="text-xs text-[#9CA3AF] mt-3">
-                              Great job! Your next video unlocks tomorrow.
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                {/* ── RIGHT: Daily Motivation (desktop only) ──── */}
-                <div className="hidden lg:flex flex-col justify-between relative overflow-hidden rounded-[28px] p-8 text-white bg-gradient-to-br from-[#5B4FF7] to-[#4338CA] shadow-[0_10px_30px_rgba(91,79,247,0.25)]">
-                  {/* decorative circles */}
-                  <div className="absolute -top-12 -right-10 w-44 h-44 rounded-full bg-white/10" />
-                  <div className="absolute -bottom-14 -left-10 w-48 h-48 rounded-full bg-white/5" />
-
-                  <div className="relative">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide uppercase bg-white/15 px-3 py-1 rounded-full">
-                      ✨ Daily Motivation
-                    </span>
-
-                    <h3 className="text-2xl font-bold mt-5 leading-snug">
-                      Small steps, big change.
-                    </h3>
-
-                    <p className="text-white/85 text-sm mt-3 leading-relaxed">
-                      {
-                        [
-                          "Rest fuels progress — a calm mind today sets up a strong week.",
-                          "Fresh week, fresh start. One small habit today compounds into big change.",
-                          "Consistency beats intensity — just show up today, even for a few minutes.",
-                          "Halfway through the week. Keep the momentum going with today's session.",
-                          "Progress isn't always visible, but every day counts. Stay with it.",
-                          "Finish the week strong — your future self will thank you.",
-                          "A little movement today keeps your streak alive. You've got this.",
-                        ][new Date().getDay()]
-                      }
+                    {/* Tagline */}
+                    <p className="text-[#9CA3AF] text-xs sm:text-sm leading-snug">
+                      {card.label}
                     </p>
-                  </div>
+                    <p className="text-[#1F2937] font-bold text-sm sm:text-base mt-0.5">
+                      {card.bold}
+                    </p>
 
-                  <div className="relative mt-6 flex items-center gap-2 text-sm font-semibold text-white/90">
-                    <span className="text-lg leading-none">←</span>
-                    Today's session is waiting
+                    {/* Current video hint (today's queue item) */}
+                    {video ? (
+                      <p className="text-[11px] text-[#9CA3AF] mt-1 line-clamp-1 max-w-[12rem]">
+                        {data?.isScheduled && (
+                          <span className="font-semibold text-[#5B4FF7]">Today's Special · </span>
+                        )}
+                        {video.title}
+                      </p>
+                    ) : (
+                      !loadingVideos && (
+                        <p className="text-[11px] text-gray-300 mt-1">
+                          No video yet
+                        </p>
+                      )
+                    )}
+
+                    {/* CTA button */}
+                    <button
+                      onClick={() => handleStart(card.id)}
+                      disabled={disabled}
+                      className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold px-10 sm:px-12 py-2.5 rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+                        completedToday
+                          ? "bg-green-500 hover:bg-green-600 text-white"
+                          : "bg-[#5B4FF7] hover:bg-[#4338CA] text-white shadow-[0_8px_20px_rgba(91,79,247,0.22)]"
+                      }`}
+                    >
+                      <Play size={13} fill="white" />
+                      {btnLabel}
+                    </button>
+
+                    {completedToday && (
+                      <p className="text-[11px] text-[#9CA3AF] mt-2">
+                        Next video unlocks tomorrow
+                      </p>
+                    )}
                   </div>
-                </div>
-              </div>
-            );
-          })()}
+                );
+              })}
+            </div>
+          </div>
           {/* 📅 UPCOMING APPOINTMENT (any booking) */}
           {/* <div className="bg-white rounded-[28px] border border-[#E7EAF3] shadow-[0_10px_30px_rgba(15,23,42,0.05)] p-6">
             <div className="flex items-center gap-2 mb-4">
