@@ -57,13 +57,6 @@ export default function WelcomePopup() {
           >
             Register for Free
           </Link>
-
-          <Link
-            to="/login"
-            className="border border-gray-300 hover:border-teal-700 hover:text-[#4F46E5] text-[#374151] py-3 rounded-full font-semibold transition-colors"
-          >
-            Login
-          </Link>
         </div>
 
         {/* footer */}
