@@ -409,14 +409,16 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated, onRateCon
           )}
 
           {canJoinVideo && (
-            <button
-              type="button"
-              onClick={() => setExpanded(true)}
+            // opens the meeting straight away (the link itself is still in the expanded card)
+            <a
+              href={meetingLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#4F46E5] hover:bg-[#4338CA] transition-colors shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
             >
               <Video size={12} />
-              See Link
-            </button>
+              Join Now
+            </a>
           )}
           
 
@@ -519,17 +521,6 @@ const AppointmentCard = ({ appointment, isUpcoming = false, onUpdated, onRateCon
                 >
                   {meetingLink}
                 </a>
-                <div className="mt-2.5">
-                  <a
-                    href={meetingLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-white bg-[#4F46E5] hover:bg-[#4338CA]Rere transition-colors shadow-[0_4px_10px_rgba(249,115,22,0.25)]"
-                  >
-                    <Video size={12} />
-                    Join Now
-                  </a>
-                </div>
               </div>
             )}
 
